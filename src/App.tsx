@@ -7,13 +7,16 @@ import { Modal } from "./components/Modal";
 import { Input } from "./components/Input";
 import { Toggle } from "./components/Toggle";
 import { Navbar, NavbarItem } from "./components/Navbar";
+import { Container } from "./components/Container";
+import { Checkbox } from "./components/Checkbox";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [toggleClicked, setToggleClicked] = useState(false);
+  const [checked, setChecked] = useState(false);
 
   return (
-    <div>
+    <Container>
       <div css={css({ height: "1000px" })}></div>
 
       <div
@@ -126,6 +129,10 @@ function App() {
         onClick={() => setToggleClicked(!toggleClicked)}
       ></Toggle>
 
+      <Checkbox checked={checked} onClick={() => setChecked(!checked)}>
+        체크 박스
+      </Checkbox>
+
       <div css={css({ height: "1000px" })}></div>
 
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
@@ -135,7 +142,7 @@ function App() {
           <Button
             color="black"
             width="100%"
-            type="outline"
+            type="fill"
             display="flex"
             onClick={() => setIsOpen(false)}
           >
@@ -143,7 +150,7 @@ function App() {
           </Button>
         </div>
       </Modal>
-    </div>
+    </Container>
   );
 }
 
