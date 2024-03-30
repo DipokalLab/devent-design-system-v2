@@ -1,6 +1,10 @@
+/** @jsxImportSource @emotion/react */
+
+import { css } from "@emotion/react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import { Button } from "../components/Button";
+import "../index.css";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -24,5 +28,31 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     children: "Button",
+  },
+};
+
+export const PrefixSubfix: Story = {
+  args: {
+    children: "Button",
+    prefix: (
+      <span
+        css={css({
+          fontSize: "1rem !important",
+        })}
+        className="material-symbols-outlined"
+      >
+        arrow_circle_right
+      </span>
+    ),
+    subfix: (
+      <span
+        css={css({
+          fontSize: "1rem !important",
+        })}
+        className="material-symbols-outlined"
+      >
+        add_box
+      </span>
+    ),
   },
 };

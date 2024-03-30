@@ -12,6 +12,9 @@ type ButtonType = {
   display?: "none" | "flex" | "block";
   shape?: "default" | "box" | "rounded";
   width?: string;
+  prefix?: any;
+  subfix?: any;
+
   onClick?: any;
   disabled?: boolean;
 };
@@ -139,6 +142,9 @@ function Button({
   shape = "default",
   display = "block",
   width = "",
+  prefix,
+  subfix,
+
   onClick,
   disabled = false,
 }: ButtonType) {
@@ -179,7 +185,19 @@ function Button({
 
   return (
     <button onClick={onClick} disabled={disabled} css={style}>
-      {children}
+      <div
+        css={css({
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "row",
+          gap: "0.4rem",
+        })}
+      >
+        {prefix}
+        {children}
+        {subfix}
+      </div>
     </button>
   );
 }

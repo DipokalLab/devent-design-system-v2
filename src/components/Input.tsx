@@ -82,4 +82,44 @@ function Input({
   );
 }
 
-export { Input };
+function Select({
+  children,
+  onChange,
+  label = "값을 선택하세요",
+}: {
+  children?: any;
+  onChange?: any;
+  label?: string;
+}) {
+  return (
+    <select
+      css={css({
+        background: "#ffffff",
+        color: "#000000",
+        borderRadius: "0.8rem",
+        border: "0.1rem solid #F0F0F4",
+        fontFamily: "'Noto Sans KR', sans-serif",
+        fontSize: "0.9rem",
+        backgroundColor: "#ffffff",
+        padding: "0.7rem 0.8rem",
+        transition: "0.3s",
+        outline: "none",
+        ":hover": {
+          boxShadow: "0 7px 20px #93949e20",
+        },
+        ":active,:focus": {
+          boxShadow: "0 7px 20px #93949e20",
+        },
+      })}
+      onChange={onChange}
+    >
+      <option disabled selected value="none">
+        {label}
+      </option>
+
+      {children}
+    </select>
+  );
+}
+
+export { Input, Select };
