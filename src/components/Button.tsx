@@ -168,6 +168,7 @@ function Button({
           ? colorSet[color].hover.backgroundColor
           : colorSet[color].backgroundColor,
       color: colorSet[color].color,
+      boxShadow: `0 7px 20px ${colorSet[color].backgroundColor}10`,
     },
     ":disabled": {
       backgroundColor: colorSet[color].disabled.backgroundColor,

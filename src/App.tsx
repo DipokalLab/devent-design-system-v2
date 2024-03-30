@@ -9,6 +9,7 @@ import { Toggle } from "./components/Toggle";
 import { Navbar, NavbarItem } from "./components/Navbar";
 import { Container } from "./components/Container";
 import { Checkbox } from "./components/Checkbox";
+import { Badge } from "./components/Badge";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -132,6 +133,8 @@ function App() {
       <Checkbox checked={checked} onClick={() => setChecked(!checked)}>
         체크 박스
       </Checkbox>
+
+      <Badge>dsf</Badge>
 
       <div css={css({ height: "1000px" })}></div>
 
