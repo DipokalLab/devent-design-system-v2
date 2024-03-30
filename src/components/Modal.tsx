@@ -129,6 +129,8 @@ function Modal({ children, onClose, isOpen }: ModalType) {
           borderRadius: "0.6rem",
           border: "0.1rem solid #cdced4",
           boxShadow: "0 7px 40px #93949e40",
+          fontFamily: "'Noto Sans KR', sans-serif",
+
           //translate: "translateY(-10px)",
           animation: fadeOutAnimation,
         })}

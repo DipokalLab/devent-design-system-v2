@@ -33,7 +33,7 @@ const fadeOut = keyframes`
 function ToastContainer({ children }: { children?: any }) {
   return (
     <div
-      id="toast"
+      id="toastContainer"
       css={css({
         display: "flex",
         flexDirection: "column",
@@ -84,4 +84,4 @@ function Toast({ children }: { children?: any }) {
   );
 }
 
-export { Toast };
+export { Toast, ToastContainer };

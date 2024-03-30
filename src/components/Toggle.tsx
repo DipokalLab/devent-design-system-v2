@@ -27,6 +27,7 @@ function Toggle({ children, checked, onClick, disabled = false }: ToggleType) {
         flexGrow: 0,
         flexShrink: 0,
         flexBasis: "100px",
+        cursor: "pointer",
       })}
     >
       <div
