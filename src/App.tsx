@@ -10,11 +10,14 @@ import { Navbar, NavbarItem } from "./components/Navbar";
 import { Container } from "./components/Container";
 import { Checkbox } from "./components/Checkbox";
 import { Badge } from "./components/Badge";
+import { useToast } from "./hooks/useToast";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [toggleClicked, setToggleClicked] = useState(false);
   const [checked, setChecked] = useState(false);
+  const [count, setCount] = useState(0);
+  const toast = useToast();
 
   return (
     <Container>
@@ -135,6 +138,17 @@ function App() {
       </Checkbox>
 
       <Badge>dsf</Badge>
+
+      <Button
+        onClick={() => {
+          toast.message({
+            text: "성공적으로 토스트를 불러왔습니다. 이번 카운트는 : " + count,
+          });
+          setCount(count + 1);
+        }}
+      >
+        dd
+      </Button>
 
       <div css={css({ height: "1000px" })}></div>
 
