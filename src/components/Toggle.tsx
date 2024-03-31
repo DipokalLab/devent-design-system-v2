@@ -20,10 +20,14 @@ function Toggle({ children, checked, onClick, disabled = false }: ToggleType) {
   };
   return (
     <div
+      onClick={handleClick}
       css={css({
         display: "flex",
         flexDirection: "row",
+        alignItems: "center",
         gap: "0.4rem",
+        fontFamily: "'Noto Sans KR', sans-serif",
+        fontSize: "0.9rem",
         flexGrow: 0,
         flexShrink: 0,
         flexBasis: "100px",
@@ -31,7 +35,6 @@ function Toggle({ children, checked, onClick, disabled = false }: ToggleType) {
       })}
     >
       <div
-        onClick={handleClick}
         css={css({
           position: "relative",
           width: "28px",
