@@ -11,6 +11,7 @@ type ButtonType = {
   size?: "sm" | "md" | "lg";
   display?: "none" | "flex" | "block";
   shape?: "default" | "box" | "rounded";
+  justifyContent?: "center" | "flex-end" | "flex-start";
   width?: string;
   prefix?: any;
   subfix?: any;
@@ -141,6 +142,7 @@ function Button({
   size = "md",
   shape = "default",
   display = "block",
+  justifyContent = "center",
   width = "",
   prefix,
   subfix,
@@ -166,7 +168,7 @@ function Button({
     fontFamily: "'Noto Sans KR', sans-serif",
     transition: "0.2s",
     cursor: "pointer",
-    justifyContent: "center",
+    justifyContent: justifyContent,
     alignItems: "center",
     ":hover": {
       backgroundColor:

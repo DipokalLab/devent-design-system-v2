@@ -14,7 +14,7 @@ function Box({
   return (
     <div
       css={css({
-        padding: "0.7rem 1.6rem",
+        padding: "0.8rem 1rem",
         marginTop: "0.6rem",
         borderRadius: "0.8rem",
         border: "0.1rem solid #F0F0F4",

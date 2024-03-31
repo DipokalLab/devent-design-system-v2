@@ -11,6 +11,7 @@ import { Container } from "./components/Container";
 import { Checkbox } from "./components/Checkbox";
 import { Badge } from "./components/Badge";
 import { useToast } from "./hooks/useToast";
+import { Dropdown, DropdownItem } from "./components/Dropdown";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -94,6 +95,31 @@ function App() {
           버튼
         </Button>
       </div>
+
+      <Dropdown title="test">
+        <DropdownItem>
+          <Button
+            display="flex"
+            width="100%"
+            size="sm"
+            color="text"
+            justifyContent="flex-start"
+          >
+            수정
+          </Button>
+        </DropdownItem>
+        <DropdownItem>
+          <Button
+            display="flex"
+            width="100%"
+            size="sm"
+            color="text"
+            justifyContent="flex-start"
+          >
+            공유하기
+          </Button>
+        </DropdownItem>
+      </Dropdown>
 
       <div
         css={css({

@@ -8,7 +8,7 @@ import { Button } from "../components/Button";
 import { useToast } from "../hooks/useToast";
 import { ToastContainer } from "../components/Toast";
 
-function Demo() {
+export function Demo() {
   const toast = useToast();
 
   return (

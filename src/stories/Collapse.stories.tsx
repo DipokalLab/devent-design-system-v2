@@ -7,7 +7,7 @@ import { Modal } from "../components/Modal";
 import { Button } from "../components/Button";
 import { Collapse, CollapseItem } from "../components/Collapse";
 
-function Demo() {
+export function Demo() {
   return (
     <div>
       <Collapse>
@@ -43,7 +43,3 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-
-export const Primary: Story = {
-  args: {},
-};
