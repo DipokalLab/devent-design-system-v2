@@ -6,12 +6,33 @@ import { css } from "@emotion/react";
 
 const RadioContext = createContext(undefined);
 
-function Radio({ children }: { children?: any }) {
+function Radio({ children, onChange }: { children?: any; onChange?: any }) {
   const [name, setName] = useState<string | any>(
     "radio_" + String(Math.random())
   );
+  const [value, setValue] = useState<any>("");
+
+  const updateValue = (e: any) => {
+    setValue(e.target.value);
+  };
+
+  const handleOnChange = () => {
+    try {
+      onChange({
+        target: {
+          value: value,
+        },
+      });
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    handleOnChange();
+  }, [value]);
+
+  const values: any = { name, updateValue };
   return (
-    <RadioContext.Provider value={name}>
+    <RadioContext.Provider value={values}>
       <div
         css={css({
           display: "flex",
@@ -25,8 +46,8 @@ function Radio({ children }: { children?: any }) {
   );
 }
 
-function RadioItem({ children }: { children?: any }) {
-  const name = useContext(RadioContext);
+function RadioItem({ children, value }: { children?: any; value?: any }) {
+  const { name, updateValue }: any = useContext(RadioContext);
   const [id, setId] = useState<string | any>(
     "radioitem_" + String(Math.random())
   );
@@ -79,6 +100,8 @@ function RadioItem({ children }: { children?: any }) {
         type="radio"
         id={id}
         name={name}
+        value={value}
+        onClick={updateValue}
       ></input>
       <label
         css={css({

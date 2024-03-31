@@ -8,34 +8,23 @@ import { Button } from "../components/Button";
 import { useToast } from "../hooks/useToast";
 import { ToastContainer } from "../components/Toast";
 import { Flex } from "../components/Flex";
-import { Radio, RadioItem } from "../components/Radio";
+import { Switch, SwitchItem } from "../components/Switch";
 
 export function Demo() {
   return (
     <Flex>
-      <Radio>
-        <RadioItem value={"sdvs"}>Radio</RadioItem>
-        <RadioItem value={"dsvfsdef"}>라디온데</RadioItem>
-      </Radio>
-    </Flex>
-  );
-}
-
-export function getValue() {
-  const [value, setValue] = useState("");
-  return (
-    <Flex>
-      {value}
-      <Radio onChange={(e: any) => setValue(e.target.value)}>
-        <RadioItem value={"sdvs"}>Radio</RadioItem>
-        <RadioItem value={"dsvfsdef"}>라디온데</RadioItem>
-      </Radio>
+      <Switch>
+        <SwitchItem selected={true} value="1">
+          Option
+        </SwitchItem>
+        <SwitchItem value="2">Pick</SwitchItem>
+      </Switch>
     </Flex>
   );
 }
 
 const meta = {
-  title: "Components/Radio",
+  title: "Components/Switch",
   component: Demo,
   parameters: {
     layout: "centered",
