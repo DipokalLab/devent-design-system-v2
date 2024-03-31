@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { css } from "@emotion/react";
 
@@ -82,6 +82,94 @@ function Input({
   );
 }
 
+function Textarea({
+  value,
+  placeholder,
+  onChange,
+  name,
+  rows = 2,
+  autosize = false,
+}: {
+  value?: any;
+  onChange?: any;
+  rows?: number;
+  placeholder?: string;
+  name?: string;
+  autosize?: boolean;
+}) {
+  const inputRef: any = useRef();
+
+  const hiddenInputRef: any = useRef();
+  const [inputHeight, setInputHeight] = useState<number>(0);
+  const handleChange = (e: any) => {
+    try {
+      if (autosize) setInputHeight(getHeight());
+      onChange(e);
+    } catch (error) {}
+  };
+
+  const getHeight = () => {
+    hiddenInputRef.current.style.height = "auto";
+
+    return Number(hiddenInputRef.current.scrollHeight);
+  };
+
+  useEffect(() => {
+    setInputHeight(getHeight());
+  }, []);
+
+  return (
+    <div
+      css={css({
+        display: "flex",
+        flexDirection: "column",
+        position: "relative",
+      })}
+    >
+      <textarea
+        value={value}
+        placeholder={placeholder}
+        onChange={handleChange}
+        name={name}
+        rows={rows}
+        ref={inputRef}
+        css={css({
+          padding: sizeSet["md"].padding,
+          borderRadius: "0.6rem",
+          border: "0.1rem solid #F0F0F4",
+          backgroundColor: colorSet["white"].backgroundColor,
+          transition: "0.3s",
+          outline: "none",
+          width: "100%",
+          height: `${inputHeight}px`,
+          ":hover": {
+            boxShadow: "0 7px 20px #93949e20",
+          },
+          ":active,:focus": {
+            boxShadow: "0 7px 20px #93949e20",
+          },
+        })}
+      ></textarea>
+
+      <textarea
+        value={value}
+        rows={rows}
+        ref={hiddenInputRef}
+        css={css({
+          position: "absolute",
+          top: "0",
+          left: "0",
+          visibility: "hidden",
+          padding: sizeSet["md"].padding,
+          transition: "0.3s",
+          outline: "none",
+          width: "100%",
+        })}
+      ></textarea>
+    </div>
+  );
+}
+
 function Select({
   children,
   onChange,
@@ -122,4 +210,4 @@ function Select({
   );
 }
 
-export { Input, Select };
+export { Input, Select, Textarea };

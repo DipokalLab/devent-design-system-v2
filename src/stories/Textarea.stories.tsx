@@ -5,35 +5,38 @@ import { Checkbox } from "../components/Checkbox";
 import { Box } from "../components/Box";
 import { Table, TableItem, TableRow } from "../components/Table";
 import { Flex } from "../components/Flex";
+import { Textarea } from "../components/Input";
+import { useState } from "react";
 
 export function Demo() {
+  const [value, setValue] = useState("");
   return (
-    <Flex width="500px">
-      <Table>
-        <TableRow isHead={true}>
-          <TableItem>#1</TableItem>
-          <TableItem>#2</TableItem>
-          <TableItem>#3</TableItem>
-        </TableRow>
+    <Flex width="200px">
+      <Textarea
+        value={value}
+        onChange={(e: any) => setValue(e.target.value)}
+        rows={3}
+      ></Textarea>
+    </Flex>
+  );
+}
 
-        <TableRow>
-          <TableItem>sdvfsd</TableItem>
-          <TableItem>sdvsd</TableItem>
-          <TableItem>sdgveg</TableItem>
-        </TableRow>
-
-        <TableRow>
-          <TableItem>sdvfsd</TableItem>
-          <TableItem>sdvsd</TableItem>
-          <TableItem>sdgveg</TableItem>
-        </TableRow>
-      </Table>
+export function Autosize() {
+  const [value, setValue] = useState("");
+  return (
+    <Flex width="200px">
+      <Textarea
+        value={value}
+        onChange={(e: any) => setValue(e.target.value)}
+        rows={3}
+        autosize={true}
+      ></Textarea>
     </Flex>
   );
 }
 
 const meta = {
-  title: "Components/Table",
+  title: "Components/Textarea",
   component: Demo,
   parameters: {
     layout: "centered",

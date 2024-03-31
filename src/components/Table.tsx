@@ -12,6 +12,7 @@ function Table({ children }: { children?: any }) {
       css={css({
         borderCollapse: "collapse",
         borderSpacing: "0px",
+        width: "100%",
       })}
     >
       {children}

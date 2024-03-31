@@ -19,6 +19,7 @@ type FlexType = {
     | "space-evenly";
   alignItems?: "stretch" | "center" | "start" | "end";
   flexDirection?: "row" | "column" | "row-reverse" | "column-reverse";
+  width?: string;
 };
 
 function Flex({
@@ -26,6 +27,7 @@ function Flex({
   justifyContent,
   alignItems,
   flexDirection,
+  width,
 }: FlexType) {
   return (
     <div
@@ -34,6 +36,7 @@ function Flex({
         justifyContent: justifyContent,
         alignItems: alignItems,
         flexDirection: flexDirection,
+        width: width,
       })}
     >
       {children}
