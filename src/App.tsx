@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Button } from "./components/Button";
 import { css } from "@emotion/react";
 import { Modal } from "./components/Modal";
-import { Input } from "./components/Input";
+import { Input, Textarea } from "./components/Input";
 import { Toggle } from "./components/Toggle";
 import { Navbar, NavbarItem } from "./components/Navbar";
 import { Container } from "./components/Container";
@@ -12,12 +12,15 @@ import { Checkbox } from "./components/Checkbox";
 import { Badge } from "./components/Badge";
 import { useToast } from "./hooks/useToast";
 import { Dropdown, DropdownItem } from "./components/Dropdown";
+import { Flex } from "./components/Flex";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [toggleClicked, setToggleClicked] = useState(false);
   const [checked, setChecked] = useState(false);
   const [count, setCount] = useState(0);
+  const [value, setValue] = useState("");
+
   const toast = useToast();
 
   return (
@@ -176,6 +179,14 @@ function App() {
         dd
       </Button>
 
+      <Flex width="200px">
+        <Textarea
+          value={value}
+          onChange={(e: any) => setValue(e.target.value)}
+          rows={3}
+          autosize={true}
+        ></Textarea>
+      </Flex>
       <div css={css({ height: "1000px" })}></div>
 
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>

@@ -8,22 +8,21 @@ import { Button } from "../components/Button";
 import { useToast } from "../hooks/useToast";
 import { ToastContainer } from "../components/Toast";
 import { Flex } from "../components/Flex";
+import { Radio, RadioItem } from "../components/Radio";
 
 export function Demo() {
-  const toast = useToast();
-
   return (
     <Flex>
-      <Button onClick={() => toast.message({ text: "dsdvsd" })}>
-        토스트 열기
-      </Button>
-      <ToastContainer></ToastContainer>
+      <Radio>
+        <RadioItem>Radio</RadioItem>
+        <RadioItem>라디온데</RadioItem>
+      </Radio>
     </Flex>
   );
 }
 
 const meta = {
-  title: "Hooks/useToast",
+  title: "Components/Radio",
   component: Demo,
   parameters: {
     layout: "centered",
@@ -35,7 +34,3 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-
-export const Primary: Story = {
-  args: {},
-};
