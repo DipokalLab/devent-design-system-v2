@@ -73,10 +73,7 @@
     "style-loader": "^3.3.4",
     "ts-loader": "^9.5.1",
     "webpack-cli": "^5.1.4",
-    "vite": "^5.2.7",
-    "vite-plugin-dts": "^3.8.1",
     "web-vitals": "^2.1.4",
-    "webpack": "^5.91.0",
-    "@vitejs/plugin-react": "^4.2.1"
+    "webpack": "^5.91.0"
   }
 }
