@@ -75,8 +75,8 @@ function RadioItem({ children, value }: { children?: any; value?: any }) {
           ":checked::after": {
             top: "2px",
             left: "2px",
-            width: "10px",
-            height: "10px",
+            width: "9px",
+            height: "9px",
             borderRadius: "5rem",
             transition: "all 150ms ease 0s",
           },

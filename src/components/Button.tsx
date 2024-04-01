@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 
 import { css } from "@emotion/react";
+import { colorPalette } from "../styles/colors";
 
 type ButtonType = {
   children?: any;
@@ -23,7 +24,7 @@ type ButtonType = {
 const colorSet = {
   blue: {
     backgroundColor: "#2B6EEF",
-    color: "#ffffff",
+    color: colorPalette.white,
     border: "none",
     hover: {
       backgroundColor: "#2661d4",
@@ -58,8 +59,8 @@ const colorSet = {
     },
   },
   white: {
-    backgroundColor: "#ffffff",
-    color: "#000000",
+    backgroundColor: colorPalette.white,
+    color: colorPalette.black,
     border: "0.1rem solid #F0F0F4",
     hover: {
       backgroundColor: "#F0F0F4",
