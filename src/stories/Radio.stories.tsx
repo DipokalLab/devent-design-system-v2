@@ -2,13 +2,9 @@ import React, { useState } from "react";
 
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { Input } from "../components/Input";
-import { Modal } from "../components/Modal";
-import { Button } from "../components/Button";
-import { useToast } from "../hooks/useToast";
-import { ToastContainer } from "../components/Toast";
-import { Flex } from "../components/Flex";
-import { Radio, RadioItem } from "../components/Radio";
+
+import { Flex } from "../lib";
+import { Radio, RadioItem } from "../lib";
 
 export function Demo() {
   return (

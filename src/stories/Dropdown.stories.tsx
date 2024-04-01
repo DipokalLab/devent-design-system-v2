@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { Input } from "../components/Input";
-import { Modal } from "../components/Modal";
-import { Button } from "../components/Button";
-import { Dropdown, DropdownItem } from "../components/Dropdown";
+import { Input } from "../lib/components/Input";
+import { Modal } from "../lib/components/Modal";
+import { Button } from "../lib/components/Button";
+import { Dropdown, DropdownItem } from "../lib/components/Dropdown";
 
 export function Demo() {
   const [isOpen, setIsOpen] = useState(false);

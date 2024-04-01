@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { Input } from "../components/Input";
-import { Modal } from "../components/Modal";
-import { Button } from "../components/Button";
+import { Input } from "../lib";
+import { Modal } from "../lib";
+import { Button } from "../lib";
 
 export function Demo() {
   const [isOpen, setIsOpen] = useState(false);

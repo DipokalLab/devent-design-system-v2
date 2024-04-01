@@ -1,23 +1,25 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { Input, Select } from "../components/Input";
+import { Badge } from "../lib/components/Badge";
+import { Checkbox } from "../lib/components/Checkbox";
 
 const meta = {
-  title: "Components/Select",
-  component: Select,
+  title: "Components/Checkbox",
+  component: Checkbox,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
   argTypes: {},
-  args: { onChange: fn() },
-} satisfies Meta<typeof Select>;
+  args: { onClick: fn() },
+} satisfies Meta<typeof Checkbox>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    label: "값을 선택하세요",
+    children: "Checkbox",
+    checked: true,
   },
 };

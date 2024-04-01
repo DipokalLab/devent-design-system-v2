@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { Input } from "../components/Input";
-import { Modal } from "../components/Modal";
-import { Button } from "../components/Button";
-import { Collapse, CollapseItem } from "../components/Collapse";
+import { Input } from "../lib/components/Input";
+import { Modal } from "../lib/components/Modal";
+import { Button } from "../lib/components/Button";
+import { Collapse, CollapseItem } from "../lib/components/Collapse";
 
 export function Demo() {
   return (

@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { Skeleton } from "../components/Skeleton";
-import { Flex } from "../components/Flex";
+import { Skeleton } from "../lib";
+import { Flex } from "../lib";
+import React from "react";
 
 export function Demo() {
   return (

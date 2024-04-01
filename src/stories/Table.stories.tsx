@@ -1,10 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
-import { Badge } from "../components/Badge";
-import { Checkbox } from "../components/Checkbox";
-import { Box } from "../components/Box";
-import { Table, TableItem, TableRow } from "../components/Table";
-import { Flex } from "../components/Flex";
+
+import { Box } from "../lib";
+import { Table, TableItem, TableRow } from "../lib";
+import { Flex } from "../lib";
+import React from "react";
 
 export function Demo() {
   return (

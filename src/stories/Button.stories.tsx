@@ -3,8 +3,8 @@
 import { css } from "@emotion/react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { Button } from "../components/Button";
-import "../index.css";
+import { Button } from "../lib/components/Button";
+import "../lib/index.css";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {

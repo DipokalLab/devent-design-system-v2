@@ -1,7 +1,17 @@
 {
-  "name": "dds",
-  "version": "0.1.0",
-  "private": true,
+  "type": "module",
+  "name": "deventds2",
+  "version": "0.1.5",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "module": "./dist/index.es.js",
+      "import": "./dist/index.es.js",
+      "default": "./dist/index.cjs.js"
+    }
+  },
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@testing-library/jest-dom": "^5.17.0",
@@ -14,8 +24,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "typescript": "^4.9.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -23,7 +32,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "tsc-build": "tsc -p tsconfig.mjs.json && tsc -p tsconfig.cjs.json",
+    "npm-publish": "tsc && vite build &&npm publish --access public"
   },
   "eslintConfig": {
     "extends": [
@@ -55,9 +66,17 @@
     "@storybook/react": "^8.0.5",
     "@storybook/react-webpack5": "^8.0.5",
     "@storybook/test": "^8.0.5",
+    "css-loader": "^6.10.0",
     "eslint-plugin-storybook": "^0.8.0",
     "prop-types": "^15.8.1",
     "storybook": "^8.0.5",
-    "webpack": "^5.91.0"
+    "style-loader": "^3.3.4",
+    "ts-loader": "^9.5.1",
+    "webpack-cli": "^5.1.4",
+    "vite": "^5.2.7",
+    "vite-plugin-dts": "^3.8.1",
+    "web-vitals": "^2.1.4",
+    "webpack": "^5.91.0",
+    "@vitejs/plugin-react": "^4.2.1"
   }
 }

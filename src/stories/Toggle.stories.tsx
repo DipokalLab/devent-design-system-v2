@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { Input } from "../components/Input";
-import { Toggle } from "../components/Toggle";
+import { Input } from "../lib";
+import { Toggle } from "../lib";
 import { useState } from "react";
+import React from "react";
 
 export function Demo() {
   const [isOpen, setIsOpen] = useState(false);

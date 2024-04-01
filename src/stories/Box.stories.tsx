@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { Badge } from "../components/Badge";
-import { Checkbox } from "../components/Checkbox";
-import { Box } from "../components/Box";
+import { Badge } from "../lib/components/Badge";
+import { Checkbox } from "../lib/components/Checkbox";
+import { Box } from "../lib/components/Box";
 
 const meta = {
   title: "Components/Box",

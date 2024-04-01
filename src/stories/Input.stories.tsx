@@ -1,23 +1,23 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { Badge } from "../components/Badge";
+import { Input } from "../lib";
 
 const meta = {
-  title: "Components/Badge",
-  component: Badge,
+  title: "Components/Input",
+  component: Input,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
   argTypes: {},
-  args: { onClick: fn() },
-} satisfies Meta<typeof Badge>;
+  args: { onChange: fn() },
+} satisfies Meta<typeof Input>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    children: "Badge",
+    placeholder: "입력..",
   },
 };
