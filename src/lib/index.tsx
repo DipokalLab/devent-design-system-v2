@@ -19,5 +19,6 @@ export * from "./components/Table";
 export * from "./components/Toast";
 export * from "./components/Toggle";
 export * from "./components/Progressbar";
+export * from "./components/Divider";
 
 export * from "./hooks/useToast";
