@@ -22,7 +22,6 @@ function Dropdown({ children, title }: { children?: any; title?: string }) {
           left: "0",
           width: "100vw",
           height: "100vh",
-          backdropFilter: "blur(10px)",
           zIndex: "1000",
         })}
       ></div>
