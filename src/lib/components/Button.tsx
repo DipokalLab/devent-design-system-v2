@@ -154,11 +154,12 @@ function Button({
   const style = css({
     width: width,
     display: display,
+    border: "none",
     backgroundColor:
       type == "fill" ? colorSet[color].backgroundColor : "transparent",
     color:
       type == "fill" ? colorSet[color].color : colorSet[color].backgroundColor,
-    border:
+    outline:
       type == "fill"
         ? colorSet[color].border
         : `0.1rem solid ${colorSet[color].backgroundColor}`,
