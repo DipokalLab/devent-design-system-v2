@@ -9,7 +9,8 @@ type InputType = {
   value?: any;
   onChange?: any;
   onEnter?: any;
-
+  vaild?: undefined | true | false;
+  vaildMessage?: string;
   placeholder?: string;
   name?: string;
   color?: "light" | "white";
@@ -34,6 +35,21 @@ const sizeSet = {
   },
 };
 
+const outlineSet: any = {
+  undefined: {
+    outline: "none",
+    color: "none",
+  },
+  false: {
+    outline: "1px solid #E8291D",
+    color: "#E8291D",
+  },
+  true: {
+    outline: "1px solid #27C868",
+    color: "#27C868",
+  },
+};
+
 function Input({
   type = "text",
   value,
@@ -41,6 +57,8 @@ function Input({
   onChange,
   onEnter,
   name,
+  vaild = undefined,
+  vaildMessage = "",
   color = "white",
   size = "md",
 }: InputType) {
@@ -57,28 +75,48 @@ function Input({
   };
 
   return (
-    <input
-      type={type}
-      value={value}
-      placeholder={placeholder}
-      onChange={handleChange}
-      onKeyUp={handleKeyUp}
-      name={name}
+    <div
       css={css({
-        padding: sizeSet[size].padding,
-        borderRadius: "0.6rem",
-        border: "0.1rem solid #F0F0F4",
-        backgroundColor: colorSet[color].backgroundColor,
-        transition: "0.3s",
-        outline: "none",
-        ":hover": {
-          boxShadow: "0 7px 20px #93949e20",
-        },
-        ":active,:focus": {
-          boxShadow: "0 7px 20px #93949e20",
-        },
+        display: "flex",
+        flexDirection: "column",
       })}
-    ></input>
+    >
+      <input
+        type={type}
+        value={value}
+        placeholder={placeholder}
+        onChange={handleChange}
+        onKeyUp={handleKeyUp}
+        name={name}
+        css={css({
+          padding: sizeSet[size].padding,
+          borderRadius: "0.6rem",
+          border: "0.1rem solid #F0F0F4",
+          backgroundColor: colorSet[color].backgroundColor,
+          transition: "0.3s",
+          outline: outlineSet[String(vaild)].outline,
+          ":hover": {
+            boxShadow: "0 7px 20px #93949e20",
+          },
+          ":active,:focus": {
+            boxShadow: "0 7px 20px #93949e20",
+          },
+        })}
+      ></input>
+
+      <label
+        css={css({
+          color: outlineSet[String(vaild)].color,
+          fontSize: "0.7rem",
+          paddingTop: "0.4rem",
+          justifyItems: "end",
+          textAlign: "end",
+        })}
+        htmlFor={name}
+      >
+        {vaildMessage}
+      </label>
+    </div>
   );
 }
 

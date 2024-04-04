@@ -21,3 +21,17 @@ export const Primary: Story = {
     placeholder: "입력..",
   },
 };
+
+export const Vaild: Story = {
+  args: {
+    vaild: false,
+    vaildMessage: "값이 들어가야 합니다..!",
+  },
+};
+
+export const VaildTrue: Story = {
+  args: {
+    vaild: true,
+    vaildMessage: "정답입니다",
+  },
+};
