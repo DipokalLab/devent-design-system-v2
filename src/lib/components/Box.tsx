@@ -4,17 +4,28 @@ import React, { useEffect, useState } from "react";
 
 import { css } from "@emotion/react";
 
+const sizeSet = {
+  sm: {
+    padding: "0.4rem 0.6rem",
+  },
+  md: {
+    padding: "0.8rem 1rem",
+  },
+};
+
 function Box({
   children,
   isShadow = false,
+  size = "md",
 }: {
   children?: any;
   isShadow?: boolean;
+  size?: "sm" | "md";
 }) {
   return (
     <div
       css={css({
-        padding: "0.8rem 1rem",
+        padding: sizeSet[size].padding,
         marginTop: "0.6rem",
         borderRadius: "0.8rem",
         border: "0.1rem solid #F0F0F4",
