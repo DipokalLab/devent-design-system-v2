@@ -18,6 +18,7 @@ function Toggle({ children, checked, onClick, disabled = false }: ToggleType) {
     }
     onClick(e);
   };
+
   return (
     <div
       onClick={handleClick}
@@ -59,7 +60,13 @@ function Toggle({ children, checked, onClick, disabled = false }: ToggleType) {
           })}
         ></div>
       </div>
-      <p css={css({ fontSize: "0.8rem" })}>{children}</p>
+      <p
+        css={css({
+          fontSize: "0.8rem",
+        })}
+      >
+        {children}
+      </p>
     </div>
   );
 }

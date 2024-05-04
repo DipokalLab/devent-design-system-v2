@@ -8,6 +8,7 @@ type ModalType = {
   children?: any;
   onClose?: any;
   isOpen?: boolean;
+  isScroll?: boolean;
 };
 
 const fadeInBackground = keyframes`
@@ -56,7 +57,7 @@ const fadeOut = keyframes`
     }
 `;
 
-function Modal({ children, onClose, isOpen }: ModalType) {
+function Modal({ children, onClose, isOpen, isScroll = false }: ModalType) {
   const [open, setOpen] = useState(false);
   const [fadeOutAnimation, setFadeOutAnimation] = useState(
     `${fadeIn} 0.3s forwards`
@@ -117,6 +118,7 @@ function Modal({ children, onClose, isOpen }: ModalType) {
       <div
         css={css({
           width: "100%",
+          height: isScroll ? "70vh" : "auto",
           "@media (min-width: 1000px)": {
             width: "40vw",
           },
@@ -130,7 +132,8 @@ function Modal({ children, onClose, isOpen }: ModalType) {
           border: "0.1rem solid #cdced4",
           boxShadow: "0 7px 40px #93949e40",
           fontFamily: "'Noto Sans KR', sans-serif",
-
+          overflow: "scroll",
+          wordBreak: "break-all",
           //translate: "translateY(-10px)",
           animation: fadeOutAnimation,
         })}

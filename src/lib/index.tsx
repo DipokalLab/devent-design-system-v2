@@ -24,3 +24,6 @@ export * from "./components/Toast";
 export * from "./components/Toggle";
 
 export * from "./hooks/useToast";
+export * from "./hooks/useColorMode";
+
+export * from "./context/ThemeProvider";
