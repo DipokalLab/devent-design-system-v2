@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
-import { Flex } from "../lib";
+import { Flex, ThemeProvider } from "../lib";
 import { Switch, SwitchItem } from "../lib";
 
 export function Demo() {
@@ -22,6 +22,13 @@ export function Demo() {
 const meta = {
   title: "Components/Switch",
   component: Demo,
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
   parameters: {
     layout: "centered",
   },

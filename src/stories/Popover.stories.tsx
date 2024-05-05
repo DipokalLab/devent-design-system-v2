@@ -1,20 +1,23 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { Skeleton, ThemeProvider } from "../lib";
-import { Flex } from "../lib";
-import React from "react";
+import { A } from "../lib/components/A";
+import { Popover } from "../lib/components/Popover";
 
-export function Demo() {
+import React from "react";
+import { ThemeProvider } from "../lib";
+
+export const Demo = () => {
   return (
-    <Flex width="100px">
-      <Skeleton></Skeleton>
-    </Flex>
+    <div>
+      test
+      <Popover message="이건 팝오버 this is ">is</Popover> simple
+    </div>
   );
-}
+};
 
 const meta = {
-  title: "Components/Skeleton",
-  component: Skeleton,
+  title: "Components/Popover",
+  component: Demo,
   decorators: [
     (Story) => (
       <ThemeProvider>
@@ -28,7 +31,7 @@ const meta = {
   tags: ["autodocs"],
   argTypes: {},
   args: {},
-} satisfies Meta<typeof Skeleton>;
+} satisfies Meta<typeof A>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

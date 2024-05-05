@@ -1,11 +1,19 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { Input } from "../lib";
+import { Input, ThemeProvider } from "../lib";
 import { Navbar } from "../lib";
+import React from "react";
 
 const meta = {
   title: "Components/Navbar",
   component: Navbar,
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
   parameters: {
     layout: "centered",
   },

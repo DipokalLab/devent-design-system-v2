@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
-import { Flex } from "../lib";
+import { Flex, ThemeProvider } from "../lib";
 import { Radio, RadioItem } from "../lib";
 
 export function Demo() {
@@ -33,6 +33,13 @@ export function getValue() {
 const meta = {
   title: "Components/Radio",
   component: Demo,
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
   parameters: {
     layout: "centered",
   },

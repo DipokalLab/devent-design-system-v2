@@ -6,6 +6,7 @@ import { Input } from "../lib/components/Input";
 import { Modal } from "../lib/components/Modal";
 import { Button } from "../lib/components/Button";
 import { Dropdown, DropdownItem } from "../lib/components/Dropdown";
+import { ThemeProvider } from "../lib";
 
 export function Demo() {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,6 +44,13 @@ export function Demo() {
 const meta = {
   title: "Components/Dropdown",
   component: Demo,
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
   parameters: {
     layout: "centered",
   },

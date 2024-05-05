@@ -3,6 +3,8 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { css } from "@emotion/react";
+import { useColorMode } from "../hooks/useColorMode";
+import { colorPalette } from "../styles/colors";
 
 type InputType = {
   type?: string;
@@ -15,15 +17,6 @@ type InputType = {
   name?: string;
   color?: "light" | "white";
   size?: "md" | "sm";
-};
-
-const colorSet = {
-  light: {
-    backgroundColor: "#F0F0F4",
-  },
-  white: {
-    backgroundColor: "#ffffff",
-  },
 };
 
 const sizeSet = {
@@ -62,6 +55,17 @@ function Input({
   color = "white",
   size = "md",
 }: InputType) {
+  const [colorMode, setColorMode] = useColorMode();
+
+  const colorSet = {
+    light: {
+      backgroundColor: colorPalette[colorMode].gray050,
+    },
+    white: {
+      backgroundColor: colorPalette[colorMode].white,
+    },
+  };
+
   const handleChange = (e: any) => {
     try {
       onChange(e);
@@ -91,15 +95,17 @@ function Input({
         css={css({
           padding: sizeSet[size].padding,
           borderRadius: "0.6rem",
-          border: "0.1rem solid #F0F0F4",
+          border: `0.1rem solid ${colorPalette[colorMode].gray050}`,
           backgroundColor: colorSet[color].backgroundColor,
           transition: "0.3s",
+          color: colorPalette[colorMode].black,
+
           outline: outlineSet[String(vaild)].outline,
           ":hover": {
-            boxShadow: "0 7px 20px #93949e20",
+            boxShadow: `0 7px 40px ${colorPalette[colorMode].gray500}20`,
           },
           ":active,:focus": {
-            boxShadow: "0 7px 20px #93949e20",
+            boxShadow: `0 7px 40px ${colorPalette[colorMode].gray500}20`,
           },
         })}
       ></input>
@@ -135,6 +141,17 @@ function Textarea({
   name?: string;
   autosize?: boolean;
 }) {
+  const [colorMode, setColorMode] = useColorMode();
+
+  const colorSet = {
+    light: {
+      backgroundColor: colorPalette[colorMode].gray050,
+    },
+    white: {
+      backgroundColor: colorPalette[colorMode].white,
+    },
+  };
+
   const inputRef: any = useRef();
 
   const hiddenInputRef: any = useRef();
@@ -174,8 +191,9 @@ function Textarea({
         css={css({
           padding: sizeSet["md"].padding,
           borderRadius: "0.6rem",
-          border: "0.1rem solid #F0F0F4",
+          border: `0.1rem solid ${colorPalette[colorMode].gray050}`,
           backgroundColor: colorSet["white"].backgroundColor,
+          color: colorPalette[colorMode].black,
           transition: "0.3s",
           outline: "none",
           width: "100%",
@@ -217,16 +235,18 @@ function Select({
   onChange?: any;
   label?: string;
 }) {
+  const [colorMode, setColorMode] = useColorMode();
+
   return (
     <select
       css={css({
-        background: "#ffffff",
-        color: "#000000",
+        background: colorPalette[colorMode].white,
+        color: colorPalette[colorMode].black,
         borderRadius: "0.8rem",
-        border: "0.1rem solid #F0F0F4",
+        border: `0.1rem solid ${colorPalette[colorMode].gray050}`,
         fontFamily: "'Noto Sans KR', sans-serif",
         fontSize: "0.9rem",
-        backgroundColor: "#ffffff",
+        backgroundColor: colorPalette[colorMode].white,
         padding: "0.7rem 0.8rem",
         transition: "0.3s",
         outline: "none",

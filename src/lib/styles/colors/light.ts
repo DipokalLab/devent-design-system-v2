@@ -3,4 +3,6 @@ export const lightColorPalette = {
   black: "#000000",
   gray050: "#F0F0F4",
   gray100: "#d4d4d9",
+  gray500: "#93949e",
+  gray950: "#24262b",
 };

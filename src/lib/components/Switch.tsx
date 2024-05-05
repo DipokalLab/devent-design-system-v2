@@ -4,10 +4,14 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 
 import { css } from "@emotion/react";
 import { Button } from "./Button";
+import { useColorMode } from "../hooks/useColorMode";
+import { colorPalette } from "../styles/colors";
 
 const SwitchContext = createContext(undefined);
 
 function Switch({ children }: { children?: any }) {
+  const [colorMode, setColorMode] = useColorMode();
+
   const [name, setName] = useState<string | any>(
     "switch_" + String(Math.random())
   );
@@ -26,7 +30,7 @@ function Switch({ children }: { children?: any }) {
           padding: "0.3rem",
           gap: "0.3rem",
           borderRadius: "0.8rem",
-          border: "0.1rem solid #F0F0F4",
+          border: `0.1rem solid ${colorPalette[colorMode].gray050}`,
         })}
       >
         {children}

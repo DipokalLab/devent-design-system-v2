@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 
 import { css, keyframes } from "@emotion/react";
 import { Button } from "./Button";
+import { useColorMode } from "../hooks/useColorMode";
+import { colorPalette } from "../styles/colors";
 
 type DialogType = {
   children?: any;
@@ -40,6 +42,8 @@ const fadeOut = keyframes`
 `;
 
 function Dialog({ children, onConfirm, onClose, isOpen }: DialogType) {
+  const [colorMode, setColorMode] = useColorMode();
+
   const [open, setOpen] = useState(false);
   const [fadeOutAnimation, setFadeOutAnimation] = useState(
     `${fadeIn} 0.3s forwards`
@@ -100,10 +104,10 @@ function Dialog({ children, onConfirm, onClose, isOpen }: DialogType) {
           },
           margin: "2rem",
           padding: "1.2rem 1.2rem",
-          backgroundColor: "#ffffff",
+          backgroundColor: colorPalette[colorMode].white,
           borderRadius: "0.6rem",
-          border: "0.1rem solid #F0F0F4",
-          boxShadow: "0 7px 40px #93949e40",
+          border: `0.1rem solid ${colorPalette[colorMode].gray050}`,
+          boxShadow: `0 7px 40px ${colorPalette[colorMode].gray500}40`,
           fontFamily: "'Noto Sans KR', sans-serif",
 
           //translate: "translateY(-10px)",

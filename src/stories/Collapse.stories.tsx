@@ -6,6 +6,7 @@ import { Input } from "../lib/components/Input";
 import { Modal } from "../lib/components/Modal";
 import { Button } from "../lib/components/Button";
 import { Collapse, CollapseItem } from "../lib/components/Collapse";
+import { ThemeProvider } from "../lib";
 
 export function Demo() {
   return (
@@ -33,6 +34,13 @@ export function Demo() {
 const meta = {
   title: "Components/Collapse",
   component: Demo,
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
   parameters: {
     layout: "centered",
   },

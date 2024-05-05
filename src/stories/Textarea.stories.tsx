@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
-import { Box } from "../lib";
+import { Box, ThemeProvider } from "../lib";
 import { Flex } from "../lib";
 import { Textarea } from "../lib";
 import { useState } from "react";
@@ -37,6 +37,13 @@ export function Autosize() {
 const meta = {
   title: "Components/Textarea",
   component: Demo,
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
   parameters: {
     layout: "centered",
   },

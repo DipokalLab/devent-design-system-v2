@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 
 import { css, keyframes } from "@emotion/react";
 import { colorPalette } from "../styles/colors";
+import { useColorMode } from "../hooks/useColorMode";
 
 function Progressbar({
   percent = 10,
@@ -12,6 +13,8 @@ function Progressbar({
   percent?: number;
   color?: string;
 }) {
+  const [colorMode, setColorMode] = useColorMode();
+
   return (
     <div
       css={css({
@@ -19,7 +22,7 @@ function Progressbar({
         position: "relative",
         height: "0.4rem",
         transition: "0.3s",
-        backgroundColor: colorPalette.gray050,
+        backgroundColor: colorPalette[colorMode].gray050,
         borderRadius: "0.4rem",
       })}
     >
@@ -27,7 +30,7 @@ function Progressbar({
         css={css({
           width: percent >= 100 ? "100%" : `${percent}%`,
           position: "absolute",
-          backgroundColor: colorPalette.black,
+          backgroundColor: colorPalette[colorMode].black,
           borderRadius: "0.4rem",
           height: "0.4rem",
           transition: "0.3s",
