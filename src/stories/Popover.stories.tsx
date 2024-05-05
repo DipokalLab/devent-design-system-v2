@@ -4,6 +4,7 @@ import { A } from "../lib/components/A";
 import { Popover } from "../lib/components/Popover";
 
 import React from "react";
+import { ThemeProvider } from "../lib";
 
 export const Demo = () => {
   return (
@@ -17,6 +18,13 @@ export const Demo = () => {
 const meta = {
   title: "Components/Popover",
   component: Demo,
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
   parameters: {
     layout: "centered",
   },

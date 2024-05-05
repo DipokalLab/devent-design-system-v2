@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { Input } from "../lib";
+import { Input, ThemeProvider } from "../lib";
 import { Modal } from "../lib";
 import { Button } from "../lib";
 
@@ -49,6 +49,13 @@ export function Scroll() {
 const meta = {
   title: "Components/Modal",
   component: Demo,
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
   parameters: {
     layout: "centered",
   },

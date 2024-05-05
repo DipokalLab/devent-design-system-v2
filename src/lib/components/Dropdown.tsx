@@ -4,8 +4,12 @@ import React, { useEffect, useState } from "react";
 
 import { css, keyframes } from "@emotion/react";
 import { Button } from "./Button";
+import { useColorMode } from "../hooks/useColorMode";
+import { colorPalette } from "../styles/colors";
 
 function Dropdown({ children, title }: { children?: any; title?: string }) {
+  const [colorMode, setColorMode] = useColorMode();
+
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
@@ -42,10 +46,10 @@ function Dropdown({ children, title }: { children?: any; title?: string }) {
             padding: "0.3rem",
             gap: "0.3rem",
             borderRadius: "0.8rem",
-            border: "0.1rem solid #F0F0F4",
+            border: `0.1rem solid ${colorPalette[colorMode].gray050}`,
             fontFamily: "'Noto Sans KR', sans-serif",
             fontSize: "0.9rem",
-            backgroundColor: "#ffffff",
+            backgroundColor: colorPalette[colorMode].white,
           })}
         >
           {children}

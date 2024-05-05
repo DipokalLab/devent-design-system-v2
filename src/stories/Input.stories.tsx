@@ -1,10 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { Input } from "../lib";
+import { Input, ThemeProvider } from "../lib";
+import React from "react";
 
 const meta = {
   title: "Components/Input",
   component: Input,
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
   parameters: {
     layout: "centered",
   },

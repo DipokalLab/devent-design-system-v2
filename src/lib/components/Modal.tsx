@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from "react";
 
 import { css, keyframes } from "@emotion/react";
+import { useColorMode } from "../hooks/useColorMode";
+import { colorPalette } from "../styles/colors";
 
 type ModalType = {
   children?: any;
@@ -58,6 +60,8 @@ const fadeOut = keyframes`
 `;
 
 function Modal({ children, onClose, isOpen, isScroll = false }: ModalType) {
+  const [colorMode, setColorMode] = useColorMode();
+
   const [open, setOpen] = useState(false);
   const [fadeOutAnimation, setFadeOutAnimation] = useState(
     `${fadeIn} 0.3s forwards`
@@ -127,10 +131,10 @@ function Modal({ children, onClose, isOpen, isScroll = false }: ModalType) {
           },
           margin: "2rem",
           padding: "1.6rem 1.6rem",
-          backgroundColor: "#ffffff",
+          backgroundColor: colorPalette[colorMode].white,
           borderRadius: "0.6rem",
-          border: "0.1rem solid #cdced4",
-          boxShadow: "0 7px 40px #93949e40",
+          border: `0.1rem solid ${colorPalette[colorMode].gray100}`,
+          boxShadow: `0 7px 40px ${colorPalette[colorMode].gray500}40`,
           fontFamily: "'Noto Sans KR', sans-serif",
           overflow: "scroll",
           wordBreak: "break-all",

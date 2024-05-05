@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from "react";
 
 import { css } from "@emotion/react";
+import { useColorMode } from "../hooks/useColorMode";
+import { colorPalette } from "../styles/colors";
 
 type CheckboxType = {
   children?: any;
@@ -17,6 +19,8 @@ function Checkbox({
   onClick,
   disabled = false,
 }: CheckboxType) {
+  const [colorMode, setColorMode] = useColorMode();
+
   const handleClick = (e: any) => {
     if (disabled) {
       return 0;
@@ -36,7 +40,9 @@ function Checkbox({
     >
       <span
         css={css({
-          backgroundColor: checked ? "#2B6EEF" : "#dedee3",
+          backgroundColor: checked
+            ? "#2B6EEF"
+            : colorPalette[colorMode].gray050,
           transition: "0.1s",
           width: "1rem",
           height: "1rem",
@@ -47,8 +53,8 @@ function Checkbox({
         <svg width={16} height={16} viewBox="0 0 20 20">
           <path
             d="M14 7L8.5 12.5L6 10"
-            fill={checked ? "#2B6EEF" : "#dedee3"}
-            stroke={checked ? "#ffffff" : "#dedee3"}
+            fill={checked ? "#2B6EEF" : colorPalette[colorMode].gray050}
+            stroke={checked ? "#ffffff" : colorPalette[colorMode].gray050}
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"

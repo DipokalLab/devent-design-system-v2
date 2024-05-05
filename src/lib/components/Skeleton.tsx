@@ -3,17 +3,20 @@
 import React, { useEffect, useState } from "react";
 
 import { css, keyframes } from "@emotion/react";
-
-const skeletonAnimation = keyframes`
-  0% {
-    background-color: #F0F0F4;
-  }
-  100% {
-    background-color: #dedee3;
-  }
-`;
+import { useColorMode } from "../hooks/useColorMode";
+import { colorPalette } from "../styles/colors";
 
 function Skeleton({ height = 10 }: { height?: number }) {
+  const [colorMode, setColorMode] = useColorMode();
+
+  const skeletonAnimation = keyframes`
+  0% {
+    background-color: ${colorPalette[colorMode].gray050};
+  }
+  100% {
+    background-color: ${colorPalette[colorMode].gray100};
+  }
+  `;
   return (
     <div
       css={css({

@@ -6,6 +6,7 @@ import { Input } from "../lib/components/Input";
 import { Modal } from "../lib/components/Modal";
 import { Button } from "../lib/components/Button";
 import { Dialog } from "../lib/components/Dialog";
+import { ThemeProvider } from "../lib";
 
 function Demo() {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,6 +28,13 @@ function Demo() {
 const meta = {
   title: "Components/Dialog",
   component: Demo,
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
   parameters: {
     layout: "centered",
   },

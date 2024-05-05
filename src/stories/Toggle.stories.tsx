@@ -38,6 +38,13 @@ export function Darkmode() {
 const meta = {
   title: "Components/Toggle",
   component: Toggle,
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
   parameters: {
     layout: "centered",
   },

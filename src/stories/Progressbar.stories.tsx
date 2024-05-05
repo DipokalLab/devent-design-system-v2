@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import { Badge } from "../lib/components/Badge";
-import { Flex, Progressbar } from "../lib";
+import { Flex, Progressbar, ThemeProvider } from "../lib";
 
 import React, { useEffect, useState } from "react";
 
@@ -22,6 +22,13 @@ export function Progress() {
 const meta = {
   title: "Components/Progressbar",
   component: Progress,
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
   parameters: {
     layout: "centered",
   },

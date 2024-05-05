@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from "react";
 
 import { css } from "@emotion/react";
+import { useColorMode } from "../hooks/useColorMode";
+import { colorPalette } from "../styles/colors";
 
 type NavbarType = {
   isDynamicWidth?: boolean;
@@ -40,8 +42,6 @@ function NavbarLogo({ children, onClick }: any) {
         padding: "0.6rem 0.6rem",
         backgroundColor: "transparent",
         fontFamily: "'Noto Sans KR', sans-serif",
-
-        color: "#edeef2",
         cursor: "pointer",
       })}
     >
@@ -51,6 +51,8 @@ function NavbarLogo({ children, onClick }: any) {
 }
 
 function Navbar({ children, isDynamicWidth = true }: NavbarType) {
+  const [colorMode, setColorMode] = useColorMode();
+
   const [showBorder, setShowBorder] = useState(false);
 
   const handleScroll = (e: any) => {
@@ -77,8 +79,10 @@ function Navbar({ children, isDynamicWidth = true }: NavbarType) {
         display: "flex",
         justifyContent: "center",
         width: "100%",
-        borderBottom: showBorder ? "0.1rem solid #F0F0F4" : "",
-        backgroundColor: "#ffffff95",
+        borderBottom: showBorder
+          ? `0.1rem solid ${colorPalette[colorMode].gray050}`
+          : "",
+        backgroundColor: `${colorPalette[colorMode].white}95`,
         zIndex: "1000",
         backdropFilter: "blur(26px)",
       })}
@@ -104,7 +108,10 @@ function Navbar({ children, isDynamicWidth = true }: NavbarType) {
           <NavbarLogo>
             <span
               className="material-symbols-outlined"
-              css={css({ fontSize: "1.4rem", color: "#2d2d30" })}
+              css={css({
+                fontSize: "1.4rem",
+                color: colorPalette[colorMode].gray950,
+              })}
             >
               home
             </span>

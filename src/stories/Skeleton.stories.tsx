@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { Skeleton } from "../lib";
+import { Skeleton, ThemeProvider } from "../lib";
 import { Flex } from "../lib";
 import React from "react";
 
@@ -15,6 +15,13 @@ export function Demo() {
 const meta = {
   title: "Components/Skeleton",
   component: Skeleton,
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
   parameters: {
     layout: "centered",
   },

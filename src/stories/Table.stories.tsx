@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Box } from "../lib";
+import { Box, ThemeProvider } from "../lib";
 import { Table, TableItem, TableRow } from "../lib";
 import { Flex } from "../lib";
 import React from "react";
@@ -34,6 +34,13 @@ export function Demo() {
 const meta = {
   title: "Components/Table",
   component: Demo,
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
   parameters: {
     layout: "centered",
   },

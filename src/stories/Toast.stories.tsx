@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
-import { Button } from "../lib";
+import { Button, ThemeProvider } from "../lib";
 import { useToast } from "../lib";
 import { ToastContainer } from "../lib";
 import { Flex } from "../lib";
@@ -24,6 +24,13 @@ export function Demo() {
 const meta = {
   title: "Hooks/useToast",
   component: Demo,
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
   parameters: {
     layout: "centered",
   },

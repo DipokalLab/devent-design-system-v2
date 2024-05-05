@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 
 import { css } from "@emotion/react";
 import { colorPalette } from "../styles/colors";
+import { useColorMode } from "../hooks/useColorMode";
 
 type ButtonType = {
   children?: any;
@@ -19,93 +20,6 @@ type ButtonType = {
 
   onClick?: any;
   disabled?: boolean;
-};
-
-const colorSet = {
-  blue: {
-    backgroundColor: "#2B6EEF",
-    color: colorPalette.white,
-    border: "none",
-    hover: {
-      backgroundColor: "#2661d4",
-    },
-    disabled: {
-      backgroundColor: "#2f5399",
-      color: "#F0F0F4",
-    },
-  },
-  green: {
-    backgroundColor: "#27C868",
-    color: "#ffffff",
-    border: "none",
-    hover: {
-      backgroundColor: "#22a858",
-    },
-    disabled: {
-      backgroundColor: "#2c8f54",
-      color: "#F0F0F4",
-    },
-  },
-  red: {
-    backgroundColor: "#E8291D",
-    color: "#ffffff",
-    border: "none",
-    hover: {
-      backgroundColor: "#c7241a",
-    },
-    disabled: {
-      backgroundColor: "#96433e",
-      color: "#F0F0F4",
-    },
-  },
-  white: {
-    backgroundColor: colorPalette.white,
-    color: colorPalette.black,
-    border: "0.1rem solid #F0F0F4",
-    hover: {
-      backgroundColor: "#F0F0F4",
-    },
-    disabled: {
-      backgroundColor: "#97979c",
-      color: "#F0F0F4",
-    },
-  },
-  light: {
-    backgroundColor: "#F0F0F4",
-    color: "#000000",
-    border: "none",
-    hover: {
-      backgroundColor: "#d4d4d9",
-    },
-    disabled: {
-      backgroundColor: "#5b5b5c",
-      color: "#97979c",
-    },
-  },
-  black: {
-    backgroundColor: "#000000",
-    color: "#ffffff",
-    border: "none",
-    hover: {
-      backgroundColor: "#2d2d30",
-    },
-    disabled: {
-      backgroundColor: "#000000",
-      color: "#F0F0F4",
-    },
-  },
-  text: {
-    backgroundColor: "#ffffff",
-    color: "#000000",
-    border: "none",
-    hover: {
-      backgroundColor: "#F0F0F4",
-    },
-    disabled: {
-      backgroundColor: "#ffffff",
-      color: "#F0F0F4",
-    },
-  },
 };
 
 const sizeSet = {
@@ -151,6 +65,95 @@ function Button({
   onClick,
   disabled = false,
 }: ButtonType) {
+  const [colorMode, setColorMode] = useColorMode();
+
+  const colorSet = {
+    blue: {
+      backgroundColor: "#2B6EEF",
+      color: colorPalette[colorMode].white,
+      border: "none",
+      hover: {
+        backgroundColor: "#2661d4",
+      },
+      disabled: {
+        backgroundColor: "#2f5399",
+        color: "#F0F0F4",
+      },
+    },
+    green: {
+      backgroundColor: "#27C868",
+      color: colorPalette[colorMode].white,
+      border: "none",
+      hover: {
+        backgroundColor: "#22a858",
+      },
+      disabled: {
+        backgroundColor: "#2c8f54",
+        color: "#F0F0F4",
+      },
+    },
+    red: {
+      backgroundColor: "#E8291D",
+      color: colorPalette[colorMode].white,
+      border: "none",
+      hover: {
+        backgroundColor: "#c7241a",
+      },
+      disabled: {
+        backgroundColor: "#96433e",
+        color: colorPalette[colorMode].gray050,
+      },
+    },
+    white: {
+      backgroundColor: colorPalette[colorMode].white,
+      color: colorPalette[colorMode].black,
+      border: "0.1rem solid #F0F0F4",
+      hover: {
+        backgroundColor: colorPalette[colorMode].gray050,
+      },
+      disabled: {
+        backgroundColor: "#97979c",
+        color: colorPalette[colorMode].gray050,
+      },
+    },
+    light: {
+      backgroundColor: colorPalette[colorMode].gray050,
+      color: colorPalette[colorMode].black,
+      border: "none",
+      hover: {
+        backgroundColor: colorPalette[colorMode].gray100,
+      },
+      disabled: {
+        backgroundColor: "#5b5b5c",
+        color: "#97979c",
+      },
+    },
+    black: {
+      backgroundColor: colorPalette[colorMode].black,
+      color: colorPalette[colorMode].white,
+      border: "none",
+      hover: {
+        backgroundColor: "#2d2d30",
+      },
+      disabled: {
+        backgroundColor: "#000000",
+        color: colorPalette[colorMode].gray050,
+      },
+    },
+    text: {
+      backgroundColor: "transparent",
+      color: colorPalette[colorMode].black,
+      border: "none",
+      hover: {
+        backgroundColor: colorPalette[colorMode].gray050,
+      },
+      disabled: {
+        backgroundColor: "#ffffff",
+        color: colorPalette[colorMode].gray050,
+      },
+    },
+  };
+
   const style = css({
     width: width,
     display: display,
