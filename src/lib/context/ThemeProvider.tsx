@@ -34,6 +34,13 @@ function ThemeProvider({ children }: any) {
               background-color: ${theme == "light" ? "#ffffff" : "#000000"};
               color: ${theme == "light" ? "#000000" : "#ffffff"};
             }
+
+            #toastContainer > div > div {
+              background-color: ${theme == "light" ? "#ffffff" : "#000000"};
+              border: ${theme == "light"
+                ? "0.1rem solid #F0F0F4"
+                : "0.1rem solid #24262b"};
+            }
           `}
         />
         {children}

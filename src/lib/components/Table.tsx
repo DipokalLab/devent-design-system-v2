@@ -5,6 +5,8 @@ import React, { useEffect, useState } from "react";
 import { css, keyframes } from "@emotion/react";
 import { createPortal, render } from "react-dom";
 import { createRoot } from "react-dom/client";
+import { useColorMode } from "../hooks/useColorMode";
+import { colorPalette } from "../styles/colors";
 
 function Table({ children }: { children?: any }) {
   return (
@@ -27,14 +29,34 @@ function TableRow({
   children?: any;
   isHead?: any;
 }) {
+  const [colorMode, setColorMode] = useColorMode();
+
+  if (isHead) {
+    return (
+      <tr
+        css={css({
+          borderRadius: "0.6rem",
+
+          backgroundColor: colorPalette[colorMode].gray050,
+          color: colorPalette[colorMode].gray950,
+          borderBottom: "none",
+
+          padding: "0.6rem",
+        })}
+      >
+        {children}
+      </tr>
+    );
+  }
+
   return (
     <tr
       css={css({
         borderRadius: "0.6rem",
 
-        backgroundColor: isHead ? "#F0F0F4" : "#ffffff",
-        color: isHead ? "#828287" : "#000000",
-        borderBottom: isHead ? "none" : "0.1rem solid #F0F0F4",
+        backgroundColor: colorPalette[colorMode].white,
+        color: colorPalette[colorMode].dark,
+        borderBottom: `0.1rem solid ${colorPalette[colorMode].gray050}`,
 
         padding: "0.6rem",
       })}

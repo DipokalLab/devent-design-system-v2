@@ -70,7 +70,7 @@ function Button({
   const colorSet = {
     blue: {
       backgroundColor: "#2B6EEF",
-      color: colorPalette[colorMode].white,
+      color: "#ffffff",
       border: "none",
       hover: {
         backgroundColor: "#2661d4",
@@ -82,7 +82,7 @@ function Button({
     },
     green: {
       backgroundColor: "#27C868",
-      color: colorPalette[colorMode].white,
+      color: "#ffffff",
       border: "none",
       hover: {
         backgroundColor: "#22a858",
@@ -94,7 +94,7 @@ function Button({
     },
     red: {
       backgroundColor: "#E8291D",
-      color: colorPalette[colorMode].white,
+      color: "#ffffff",
       border: "none",
       hover: {
         backgroundColor: "#c7241a",
@@ -107,7 +107,7 @@ function Button({
     white: {
       backgroundColor: colorPalette[colorMode].white,
       color: colorPalette[colorMode].black,
-      border: "0.1rem solid #F0F0F4",
+      border: `0.1rem solid ${colorPalette[colorMode].gray050}`,
       hover: {
         backgroundColor: colorPalette[colorMode].gray050,
       },
@@ -133,7 +133,7 @@ function Button({
       color: colorPalette[colorMode].white,
       border: "none",
       hover: {
-        backgroundColor: "#2d2d30",
+        backgroundColor: colorPalette[colorMode].gray950,
       },
       disabled: {
         backgroundColor: "#000000",
