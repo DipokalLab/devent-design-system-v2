@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 
 import { css, keyframes } from "@emotion/react";
 import { Box } from "./Box";
+import { useColorMode } from "../hooks/useColorMode";
+import { colorPalette } from "../styles/colors";
 
 const rotate180 = keyframes`
 0% {
@@ -41,6 +43,8 @@ function Collapse({ children }: { children?: any }) {
 }
 
 function CollapseItem({ children, title }: { children?: any; title?: any }) {
+  const [colorMode, setColorMode] = useColorMode();
+
   const [isOpen, setIsOpen] = useState(false);
   const [rotateAnimation, setRotateAnimation] = useState(
     `${rotate0} 0.3s forwards`
@@ -86,8 +90,16 @@ function CollapseItem({ children, title }: { children?: any; title?: any }) {
         >
           <path
             d="M4 8L10 12L16 8"
-            fill={isOpen ? "#ffffff" : "#ffffff"}
-            stroke={isOpen ? "#000000" : "#000000"}
+            fill={
+              isOpen
+                ? colorPalette[colorMode].white
+                : colorPalette[colorMode].white
+            }
+            stroke={
+              isOpen
+                ? colorPalette[colorMode].black
+                : colorPalette[colorMode].black
+            }
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
