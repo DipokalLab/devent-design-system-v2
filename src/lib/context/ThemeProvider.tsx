@@ -10,6 +10,11 @@ const getColorMode = (): "light" | "dark" => {
   const cookies: any = getCookies();
   if (!cookies.hasOwnProperty("theme")) {
     setCookie("theme", "light");
+    return "light";
+  }
+  if (cookies == undefined) {
+    setCookie("theme", "light");
+    return "light";
   }
   return cookies.theme;
 };
@@ -18,7 +23,11 @@ function ThemeProvider({ children }: any) {
   const [theme, setTheme] = useState<any>(getColorMode());
 
   const updateColorTheme = (color: string) => {
-    console.log(color);
+    if (["light", "dark"].indexOf(color) == -1) {
+      setCookie("theme", "light");
+      setTheme("light");
+      return false;
+    }
     setCookie("theme", color);
     setTheme(color);
   };
