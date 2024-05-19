@@ -114,7 +114,7 @@ function Modal({ children, onClose, isOpen, isScroll = false }: ModalType) {
         left: "0",
         backdropFilter: "brightness(70%)",
         animation: backgroundAnimation,
-
+        scrollbarWidth: "none",
         zIndex: 3000,
         transition: "0.1s",
       })}

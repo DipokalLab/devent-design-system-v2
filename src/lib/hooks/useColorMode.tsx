@@ -9,6 +9,7 @@ const getColorMode = (): "light" | "dark" => {
   const cookies: any = getCookies();
   if (!cookies.hasOwnProperty("theme")) {
     setCookie("theme", "light");
+    return "light";
   }
   return cookies.theme;
 };

@@ -19,6 +19,23 @@ export function Demo() {
   );
 }
 
+export function Multiple() {
+  return (
+    <Flex>
+      <Switch>
+        <SwitchItem selected={true} value="1">
+          Option
+        </SwitchItem>
+        <SwitchItem value="2">Pick1</SwitchItem>
+        <SwitchItem value="3">Pick2</SwitchItem>
+
+        <SwitchItem value="4">Pick3</SwitchItem>
+
+      </Switch>
+    </Flex>
+  );
+}
+
 const meta = {
   title: "Components/Switch",
   component: Demo,
