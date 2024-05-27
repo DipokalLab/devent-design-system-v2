@@ -15,6 +15,8 @@ function Dropdown({ children, title }: { children?: any; title?: string }) {
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
+
+
   return (
     <>
       <div
@@ -50,6 +52,7 @@ function Dropdown({ children, title }: { children?: any; title?: string }) {
             fontFamily: "'Noto Sans KR', sans-serif",
             fontSize: "0.9rem",
             backgroundColor: colorPalette[colorMode].white,
+            boxShadow: "0 7px 20px #93949e20",
           })}
         >
           {children}

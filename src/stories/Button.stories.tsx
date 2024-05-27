@@ -39,10 +39,16 @@ export const Primary: Story = {
   },
 };
 
+export function Demo() {
+  return (
+    <Button onClick={() => console.log("SD")} color="blue">sf</Button>
+  );
+}
+
 export const PrefixSubfix: Story = {
   args: {
     children: "Button",
-    prefix: (
+    prefixComponent: (
       <span
         css={css({
           fontSize: "1rem !important",
@@ -52,7 +58,7 @@ export const PrefixSubfix: Story = {
         arrow_circle_right
       </span>
     ),
-    subfix: (
+    subfixComponent: (
       <span
         css={css({
           fontSize: "1rem !important",

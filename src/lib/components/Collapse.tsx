@@ -27,6 +27,29 @@ const rotate0 = keyframes`
   }
 `;
 
+const fadeIn = keyframes`
+0% {
+  opacity: 0;
+
+}
+  100% {
+    opacity: 1;
+
+  }
+`;
+
+const fadeOut = keyframes`
+0% {
+    opacity: 1;
+
+}
+  100% {
+    opacity: 0;
+
+  }
+`;
+
+
 function Collapse({ children }: { children?: any }) {
   return (
     <div
@@ -111,9 +134,13 @@ function CollapseItem({ children, title }: { children?: any; title?: any }) {
       </div>
       <div
         css={css({
+          visibility: isOpen ? "visible" : "hidden",
           display: isOpen ? "" : "none",
+          position: "relative",
           fontFamily: "'Noto Sans KR', sans-serif",
           fontSize: "1rem",
+          animation: isOpen ? `${fadeIn} 1s forwards` : `${fadeOut} 0.3s forwards`
+
         })}
       >
         <Box>{children}</Box>

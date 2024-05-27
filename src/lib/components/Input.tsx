@@ -28,20 +28,6 @@ const sizeSet = {
   },
 };
 
-const outlineSet: any = {
-  undefined: {
-    outline: "none",
-    color: "none",
-  },
-  false: {
-    outline: "1px solid #E8291D",
-    color: "#E8291D",
-  },
-  true: {
-    outline: "1px solid #27C868",
-    color: "#27C868",
-  },
-};
 
 function Input({
   type = "text",
@@ -57,6 +43,22 @@ function Input({
 }: InputType) {
   const [colorMode, setColorMode] = useColorMode();
 
+  const outlineSet: any = {
+    undefined: {
+      outline: "none",
+      color: "none",
+    },
+    false: {
+      outline: `1px solid ${colorPalette[colorMode].red500}`,
+      color: colorPalette[colorMode].red500,
+    },
+    true: {
+      outline: `1px solid ${colorPalette[colorMode].green500}`,
+      color: colorPalette[colorMode].green500,
+    },
+  };
+
+
   const colorSet = {
     light: {
       backgroundColor: colorPalette[colorMode].gray050,
@@ -69,7 +71,7 @@ function Input({
   const handleChange = (e: any) => {
     try {
       onChange(e);
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const handleKeyUp = (e: any) => {
@@ -160,7 +162,7 @@ function Textarea({
     try {
       if (autosize) setInputHeight(getHeight());
       onChange(e);
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const getHeight = () => {
