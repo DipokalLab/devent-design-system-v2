@@ -5,6 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { css } from "@emotion/react";
 import { useColorMode } from "../hooks/useColorMode";
 import { colorPalette } from "../styles/colors";
+import styled from "@emotion/styled";
 
 type InputType = {
   type?: string;
@@ -27,7 +28,6 @@ const sizeSet = {
     padding: "0.8rem 0.6rem",
   },
 };
-
 
 function Input({
   type = "text",
@@ -58,7 +58,6 @@ function Input({
     },
   };
 
-
   const colorSet = {
     light: {
       backgroundColor: colorPalette[colorMode].gray050,
@@ -68,63 +67,61 @@ function Input({
     },
   };
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     try {
       onChange(e);
-    } catch (error) { }
+    } catch (error) {}
   };
 
-  const handleKeyUp = (e: any) => {
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode == 13) {
       onEnter();
     }
   };
 
+  const FlexBody = styled.div({
+    display: "flex",
+    flexDirection: "column",
+  });
+
+  const Input = styled.input({
+    padding: sizeSet[size].padding,
+    borderRadius: "0.6rem",
+    border: `0.1rem solid ${colorPalette[colorMode].gray050}`,
+    backgroundColor: colorSet[color].backgroundColor,
+    transition: "0.3s",
+    color: colorPalette[colorMode].black,
+
+    outline: outlineSet[String(vaild)].outline,
+    ":hover": {
+      boxShadow: `0 7px 40px ${colorPalette[colorMode].gray500}20`,
+    },
+    ":active,:focus": {
+      boxShadow: `0 7px 40px ${colorPalette[colorMode].gray500}20`,
+    },
+  });
+
+  const BottomLabel = styled.label({
+    color: outlineSet[String(vaild)].color,
+    fontSize: "0.7rem",
+    paddingTop: "0.4rem",
+    justifyItems: "end",
+    textAlign: "end",
+  });
+
   return (
-    <div
-      css={css({
-        display: "flex",
-        flexDirection: "column",
-      })}
-    >
-      <input
+    <FlexBody>
+      <Input
         type={type}
         value={value}
         placeholder={placeholder}
         onChange={handleChange}
         onKeyUp={handleKeyUp}
         name={name}
-        css={css({
-          padding: sizeSet[size].padding,
-          borderRadius: "0.6rem",
-          border: `0.1rem solid ${colorPalette[colorMode].gray050}`,
-          backgroundColor: colorSet[color].backgroundColor,
-          transition: "0.3s",
-          color: colorPalette[colorMode].black,
+      />
 
-          outline: outlineSet[String(vaild)].outline,
-          ":hover": {
-            boxShadow: `0 7px 40px ${colorPalette[colorMode].gray500}20`,
-          },
-          ":active,:focus": {
-            boxShadow: `0 7px 40px ${colorPalette[colorMode].gray500}20`,
-          },
-        })}
-      ></input>
-
-      <label
-        css={css({
-          color: outlineSet[String(vaild)].color,
-          fontSize: "0.7rem",
-          paddingTop: "0.4rem",
-          justifyItems: "end",
-          textAlign: "end",
-        })}
-        htmlFor={name}
-      >
-        {vaildMessage}
-      </label>
-    </div>
+      <BottomLabel htmlFor={name}>{vaildMessage}</BottomLabel>
+    </FlexBody>
   );
 }
 
@@ -154,20 +151,22 @@ function Textarea({
     },
   };
 
-  const inputRef: any = useRef();
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  const hiddenInputRef: any = useRef();
+  const hiddenInputRef = useRef<HTMLTextAreaElement | any>();
   const [inputHeight, setInputHeight] = useState<number>(0);
-  const handleChange = (e: any) => {
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     try {
       if (autosize) setInputHeight(getHeight());
       onChange(e);
-    } catch (error) { }
+      console.log(e.target.value);
+    } catch (error) {}
   };
+  const handleChangeHidden = (e: React.ChangeEvent<HTMLTextAreaElement>) => {};
 
   const getHeight = () => {
     hiddenInputRef.current.style.height = "auto";
-
     return Number(hiddenInputRef.current.scrollHeight);
   };
 
@@ -184,12 +183,12 @@ function Textarea({
       })}
     >
       <textarea
-        value={value}
         placeholder={placeholder}
         onChange={handleChange}
         name={name}
         rows={rows}
         ref={inputRef}
+        value={value}
         css={css({
           padding: sizeSet["md"].padding,
           borderRadius: "0.6rem",
@@ -213,6 +212,7 @@ function Textarea({
         value={value}
         rows={rows}
         ref={hiddenInputRef}
+        onChange={handleChangeHidden}
         css={css({
           position: "absolute",
           top: "0",
@@ -239,34 +239,33 @@ function Select({
 }) {
   const [colorMode, setColorMode] = useColorMode();
 
+  const Select = styled.select({
+    background: colorPalette[colorMode].white,
+    color: colorPalette[colorMode].black,
+    borderRadius: "0.8rem",
+    border: `0.1rem solid ${colorPalette[colorMode].gray050}`,
+    fontFamily: "'Noto Sans KR', sans-serif",
+    fontSize: "0.9rem",
+    backgroundColor: colorPalette[colorMode].white,
+    padding: "0.7rem 0.8rem",
+    transition: "0.3s",
+    outline: "none",
+    ":hover": {
+      boxShadow: "0 7px 20px #93949e20",
+    },
+    ":active,:focus": {
+      boxShadow: "0 7px 20px #93949e20",
+    },
+  });
+
   return (
-    <select
-      css={css({
-        background: colorPalette[colorMode].white,
-        color: colorPalette[colorMode].black,
-        borderRadius: "0.8rem",
-        border: `0.1rem solid ${colorPalette[colorMode].gray050}`,
-        fontFamily: "'Noto Sans KR', sans-serif",
-        fontSize: "0.9rem",
-        backgroundColor: colorPalette[colorMode].white,
-        padding: "0.7rem 0.8rem",
-        transition: "0.3s",
-        outline: "none",
-        ":hover": {
-          boxShadow: "0 7px 20px #93949e20",
-        },
-        ":active,:focus": {
-          boxShadow: "0 7px 20px #93949e20",
-        },
-      })}
-      onChange={onChange}
-    >
+    <Select onChange={onChange}>
       <option disabled selected value="none">
         {label}
       </option>
 
       {children}
-    </select>
+    </Select>
   );
 }
 

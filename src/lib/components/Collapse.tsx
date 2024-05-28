@@ -6,63 +6,53 @@ import { css, keyframes } from "@emotion/react";
 import { Box } from "./Box";
 import { useColorMode } from "../hooks/useColorMode";
 import { colorPalette } from "../styles/colors";
+import styled from "@emotion/styled";
 
 const rotate180 = keyframes`
-0% {
+  0% {
     transform: rotate(0deg);
-
-}
+  }
   100% {
     transform: rotate(180deg);
   }
 `;
 
 const rotate0 = keyframes`
-0% {
+  0% {
     transform: rotate(180deg);
-
-}
+  }
   100% {
     transform: rotate(0deg);
   }
 `;
 
 const fadeIn = keyframes`
-0% {
-  opacity: 0;
-
-}
+  0% {
+    opacity: 0;
+  }
   100% {
     opacity: 1;
-
   }
 `;
 
 const fadeOut = keyframes`
-0% {
+  0% {
     opacity: 1;
-
-}
+  }
   100% {
     opacity: 0;
-
   }
 `;
 
-
 function Collapse({ children }: { children?: any }) {
-  return (
-    <div
-      css={css({
-        display: "flex",
-        flexDirection: "column",
-        gap: "1rem",
-        width: "100%",
-      })}
-    >
-      {children}
-    </div>
-  );
+  const BodyElement = styled.div({
+    display: "flex",
+    flexDirection: "column",
+    gap: "1rem",
+    width: "100%",
+  });
+
+  return <BodyElement>{children}</BodyElement>;
 }
 
 function CollapseItem({ children, title }: { children?: any; title?: any }) {
@@ -72,6 +62,7 @@ function CollapseItem({ children, title }: { children?: any; title?: any }) {
   const [rotateAnimation, setRotateAnimation] = useState(
     `${rotate0} 0.3s forwards`
   );
+
   const handleClickTitle = () => {
     if (isOpen) {
       setRotateAnimation(`${rotate0} 0.3s forwards`);
@@ -80,72 +71,81 @@ function CollapseItem({ children, title }: { children?: any; title?: any }) {
     }
     setIsOpen(!isOpen);
   };
+
+  const TopElement = styled.div({
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.2rem",
+  });
+
+  const TitleElement = styled.div({
+    display: "flex",
+    gap: "1rem",
+    padding: "0.2rem 0rem",
+    alignItems: "center",
+    justifyContent: "space-between",
+    fontFamily: "'Noto Sans KR', sans-serif",
+    fontSize: "1.2rem",
+    cursor: "pointer",
+  });
+
+  const ContentElement = styled.div({
+    visibility: isOpen ? "visible" : "hidden",
+    display: isOpen ? "" : "none",
+    position: "relative",
+    fontFamily: "'Noto Sans KR', sans-serif",
+    fontSize: "1rem",
+    animation: isOpen ? `${fadeIn} 1s forwards` : `${fadeOut} 0.3s forwards`,
+  });
+
   return (
-    <div
+    <TopElement>
+      <TitleElement onClick={handleClickTitle}>
+        {title}
+        <Arrow isOpen={isOpen} rotateAnimation={rotateAnimation}></Arrow>
+      </TitleElement>
+
+      <ContentElement>
+        <Box>{children}</Box>
+      </ContentElement>
+    </TopElement>
+  );
+}
+
+function Arrow({
+  isOpen,
+  rotateAnimation,
+}: {
+  isOpen?: boolean;
+  rotateAnimation?: string;
+}) {
+  const [colorMode, setColorMode] = useColorMode();
+
+  return (
+    <svg
+      width={16}
+      height={16}
+      viewBox="0 0 20 20"
       css={css({
-        display: "flex",
-        flexDirection: "column",
-        gap: "0.2rem",
+        animation: rotateAnimation,
       })}
     >
-      <div
-        onClick={handleClickTitle}
+      <path
+        d="M4 8L10 12L16 8"
+        fill={
+          isOpen ? colorPalette[colorMode].white : colorPalette[colorMode].white
+        }
+        stroke={
+          isOpen ? colorPalette[colorMode].black : colorPalette[colorMode].black
+        }
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
         css={css({
-          display: "flex",
-          gap: "1rem",
-          padding: "0.2rem 0rem",
-          alignItems: "center",
-          justifyContent: "space-between",
-          fontFamily: "'Noto Sans KR', sans-serif",
-          fontSize: "1.2rem",
-          // borderBottom: "0.1rem solid #F0F0F4",
-          cursor: "pointer",
+          transition: "0.1s",
         })}
-      >
-        {title}
-        <svg
-          width={16}
-          height={16}
-          viewBox="0 0 20 20"
-          css={css({
-            animation: rotateAnimation,
-          })}
-        >
-          <path
-            d="M4 8L10 12L16 8"
-            fill={
-              isOpen
-                ? colorPalette[colorMode].white
-                : colorPalette[colorMode].white
-            }
-            stroke={
-              isOpen
-                ? colorPalette[colorMode].black
-                : colorPalette[colorMode].black
-            }
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            css={css({
-              transition: "0.1s",
-            })}
-          ></path>
-        </svg>
-      </div>
-      <div
-        css={css({
-          visibility: isOpen ? "visible" : "hidden",
-          display: isOpen ? "" : "none",
-          position: "relative",
-          fontFamily: "'Noto Sans KR', sans-serif",
-          fontSize: "1rem",
-          animation: isOpen ? `${fadeIn} 1s forwards` : `${fadeOut} 0.3s forwards`
-
-        })}
-      >
-        <Box>{children}</Box>
-      </div>
-    </div>
+      ></path>
+    </svg>
   );
 }
 

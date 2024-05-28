@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 
 import { css, keyframes } from "@emotion/react";
 import { Button } from "./Button";
+import styled from "@emotion/styled";
 
 type FlexType = {
   children?: any;
@@ -29,19 +30,15 @@ function Flex({
   flexDirection,
   width,
 }: FlexType) {
-  return (
-    <div
-      css={css({
-        display: "flex",
-        justifyContent: justifyContent,
-        alignItems: alignItems,
-        flexDirection: flexDirection,
-        width: width,
-      })}
-    >
-      {children}
-    </div>
-  );
+  const FlexElement = styled.div({
+    display: "flex",
+    justifyContent: justifyContent,
+    alignItems: alignItems,
+    flexDirection: flexDirection,
+    width: width,
+  });
+
+  return <FlexElement>{children}</FlexElement>;
 }
 
 export { Flex };
