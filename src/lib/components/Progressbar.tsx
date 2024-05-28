@@ -6,13 +6,7 @@ import { css, keyframes } from "@emotion/react";
 import { colorPalette } from "../styles/colors";
 import { useColorMode } from "../hooks/useColorMode";
 
-function Progressbar({
-  percent = 10,
-  color = "black",
-}: {
-  percent?: number;
-  color?: string;
-}) {
+function Progressbar({ percent = 10 }: { percent?: number }) {
   const [colorMode, setColorMode] = useColorMode();
 
   return (

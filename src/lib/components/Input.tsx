@@ -20,6 +20,15 @@ type InputType = {
   size?: "md" | "sm";
 };
 
+type TextAreaType = {
+  value?: any;
+  onChange?: any;
+  rows?: number;
+  placeholder?: string;
+  name?: string;
+  autosize?: boolean;
+};
+
 const sizeSet = {
   md: {
     padding: "0.8rem 1rem",
@@ -126,20 +135,13 @@ function Input({
 }
 
 function Textarea({
-  value,
-  placeholder,
+  value = "",
+  placeholder = "",
   onChange,
-  name,
+  name = "name",
   rows = 2,
   autosize = false,
-}: {
-  value?: any;
-  onChange?: any;
-  rows?: number;
-  placeholder?: string;
-  name?: string;
-  autosize?: boolean;
-}) {
+}: TextAreaType) {
   const [colorMode, setColorMode] = useColorMode();
 
   const colorSet = {
@@ -160,7 +162,6 @@ function Textarea({
     try {
       if (autosize) setInputHeight(getHeight());
       onChange(e);
-      console.log(e.target.value);
     } catch (error) {}
   };
   const handleChangeHidden = (e: React.ChangeEvent<HTMLTextAreaElement>) => {};

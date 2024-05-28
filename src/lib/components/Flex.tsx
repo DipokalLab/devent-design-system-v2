@@ -30,7 +30,7 @@ function Flex({
   flexDirection,
   width,
 }: FlexType) {
-  const FlexElement = styled.div({
+  const flexStyle = css({
     display: "flex",
     justifyContent: justifyContent,
     alignItems: alignItems,
@@ -38,7 +38,7 @@ function Flex({
     width: width,
   });
 
-  return <FlexElement>{children}</FlexElement>;
+  return <div css={flexStyle}>{children}</div>;
 }
 
 export { Flex };

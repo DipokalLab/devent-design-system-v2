@@ -19,7 +19,7 @@ export function Demo() {
           <Button
             color="black"
             width="100%"
-            type="fill"
+            fillType="fill"
             display="flex"
             onClick={() => setIsOpen(false)}
           >
