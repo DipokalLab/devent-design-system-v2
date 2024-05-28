@@ -1,26 +1,28 @@
 /** @jsxImportSource @emotion/react */
 
-import React, { useEffect, useState } from "react";
+import React, { ButtonHTMLAttributes, DetailedHTMLProps, useEffect, useState } from "react";
 
 import { css } from "@emotion/react";
 import { colorPalette } from "../styles/colors";
 import { useColorMode } from "../hooks/useColorMode";
 
-type ButtonType = {
+interface ButtonProps
+  extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   children?: any;
   color?: "blue" | "green" | "red" | "white" | "light" | "black" | "text";
-  type?: "fill" | "outline";
+  fillType?: "fill" | "outline";
   size?: "sm" | "md" | "lg";
   display?: "none" | "flex" | "block";
   shape?: "default" | "box" | "rounded";
   justifyContent?: "center" | "flex-end" | "flex-start";
   width?: string;
-  prefix?: any;
-  subfix?: any;
+  prefixComponent?: any;
+  subfixComponent?: any;
 
   onClick?: any;
   disabled?: boolean;
-};
+}
+
 
 const sizeSet = {
   sm: {
@@ -50,58 +52,57 @@ const shapeSet = {
   },
 };
 
-function Button({
-  children,
-  color = "black",
-  type = "fill",
-  size = "md",
-  shape = "default",
-  display = "block",
-  justifyContent = "center",
-  width = "",
-  prefix,
-  subfix,
-
-  onClick,
-  disabled = false,
-}: ButtonType) {
+function Button(props: ButtonProps) {
+  const {
+    children,
+    color = "black",
+    fillType = "fill",
+    size = "md",
+    shape = "default",
+    display = "block",
+    justifyContent = "center",
+    width = "",
+    prefixComponent,
+    subfixComponent,
+    disabled = false,
+  } = props;
   const [colorMode, setColorMode] = useColorMode();
 
   const colorSet = {
     blue: {
-      backgroundColor: "#2B6EEF",
+      backgroundColor: colorPalette[colorMode].blue500,
       color: "#ffffff",
       border: "none",
       hover: {
-        backgroundColor: "#2661d4",
+        backgroundColor: colorPalette[colorMode].blue600,
       },
       disabled: {
-        backgroundColor: "#2f5399",
+        backgroundColor: colorPalette[colorMode].blue400,
         color: "#F0F0F4",
       },
     },
     green: {
-      backgroundColor: "#27C868",
+      backgroundColor: colorPalette[colorMode].green500,
       color: "#ffffff",
       border: "none",
       hover: {
-        backgroundColor: "#22a858",
+        backgroundColor: colorPalette[colorMode].green600,
       },
       disabled: {
-        backgroundColor: "#2c8f54",
+        backgroundColor: colorPalette[colorMode].green400,
         color: "#F0F0F4",
       },
     },
     red: {
-      backgroundColor: "#E8291D",
+      backgroundColor: colorPalette[colorMode].red500,
       color: "#ffffff",
       border: "none",
       hover: {
-        backgroundColor: "#c7241a",
+        backgroundColor: colorPalette[colorMode].red600,
       },
       disabled: {
-        backgroundColor: "#96433e",
-        color: colorPalette[colorMode].gray050,
+        backgroundColor: colorPalette[colorMode].red400,
+        color: "#F0F0F4",
       },
     },
     white: {
@@ -159,11 +160,11 @@ function Button({
     display: display,
     border: "none",
     backgroundColor:
-      type == "fill" ? colorSet[color].backgroundColor : "transparent",
+      fillType == "fill" ? colorSet[color].backgroundColor : "transparent",
     color:
-      type == "fill" ? colorSet[color].color : colorSet[color].backgroundColor,
+      fillType == "fill" ? colorSet[color].color : colorSet[color].backgroundColor,
     outline:
-      type == "fill"
+      fillType == "fill"
         ? colorSet[color].border
         : `0.1rem solid ${colorSet[color].backgroundColor}`,
     borderRadius: shapeSet[shape].borderRadius,
@@ -177,7 +178,7 @@ function Button({
     alignItems: "center",
     ":hover": {
       backgroundColor:
-        type == "fill"
+        fillType == "fill"
           ? colorSet[color].hover.backgroundColor
           : colorSet[color].backgroundColor,
       color: colorSet[color].color,
@@ -191,7 +192,7 @@ function Button({
   });
 
   return (
-    <button onClick={onClick} disabled={disabled} css={style}>
+    <button {...props} disabled={disabled} css={style}>
       <div
         css={css({
           display: "flex",
@@ -201,9 +202,9 @@ function Button({
           gap: "0.4rem",
         })}
       >
-        {prefix}
+        {prefixComponent}
         {children}
-        {subfix}
+        {subfixComponent}
       </div>
     </button>
   );

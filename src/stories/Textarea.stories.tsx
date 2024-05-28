@@ -8,7 +8,7 @@ import { useState } from "react";
 import React from "react";
 
 export function Demo() {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState("dsv");
   return (
     <Flex width="200px">
       <Textarea

@@ -23,6 +23,7 @@ export * from "./components/Table";
 export * from "./components/Toast";
 export * from "./components/Toggle";
 export * from "./components/Slider";
+export * from "./components/Combobox";
 
 export * from "./hooks/useToast";
 export * from "./hooks/useColorMode";
