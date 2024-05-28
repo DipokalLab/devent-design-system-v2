@@ -8,19 +8,6 @@ import { colorPalette } from "../styles/colors";
 import { DropdownItem } from "./Dropdown";
 import { Button } from "./Button";
 
-type InputType = {
-    type?: string;
-    value?: any;
-    onChange?: any;
-    onEnter?: any;
-    vaild?: undefined | true | false;
-    vaildMessage?: string;
-    placeholder?: string;
-    name?: string;
-    color?: "light" | "white";
-    size?: "md" | "sm";
-};
-
 const sizeSet = {
     md: {
         padding: "0.8rem 1rem",
@@ -38,25 +25,25 @@ function Combobox({
     onChange,
     onEnter,
     name,
-}: InputType) {
+    list = [""]
+}: {
+    type?: string;
+    value?: any;
+    onChange?: any;
+    onEnter?: any;
+    vaild?: undefined | true | false;
+    vaildMessage?: string;
+    placeholder?: string;
+    name?: string;
+    color?: "light" | "white";
+    size?: "md" | "sm";
+    list?: string[] | number[]
+}) {
     const [colorMode, setColorMode] = useColorMode();
     const [isClick, setIsClick] = useState(false)
+    const [clickValue, setClickValue] = useState("")
 
-    const outlineSet: any = {
-        undefined: {
-            outline: "none",
-            color: "none",
-        },
-        false: {
-            outline: `1px solid ${colorPalette[colorMode].red500}`,
-            color: colorPalette[colorMode].red500,
-        },
-        true: {
-            outline: `1px solid ${colorPalette[colorMode].green500}`,
-            color: colorPalette[colorMode].green500,
-        },
-    };
-
+    const inputRef = useRef<HTMLInputElement>(null)
 
     const colorSet = {
         light: {
@@ -69,6 +56,7 @@ function Combobox({
 
     const handleChange = (e: any) => {
         try {
+            e.target.value = clickValue
             onChange(e);
         } catch (error) { }
     };
@@ -79,6 +67,10 @@ function Combobox({
         }
     };
 
+    const handleItemClick = (e: any) => {
+        setClickValue(e.target.innerText)
+    }
+
     const handleClick = () => {
         setIsClick(true)
     }
@@ -86,6 +78,19 @@ function Combobox({
     const handleDocumentClick = () => {
         setIsClick(false)
     }
+
+    useEffect(() => {
+        try {
+            onChange({
+                target: {
+                    value: clickValue
+                }
+            });
+        } catch (error) {
+
+        }
+
+    }, [clickValue])
 
 
     return (
@@ -109,6 +114,8 @@ function Combobox({
                     flexDirection: "column",
                     position: "relative",
                     zIndex: "2000",
+                    width: "100%",
+
                 })}
             >
                 <input
@@ -116,8 +123,9 @@ function Combobox({
                     type={type}
                     value={value}
                     placeholder={placeholder}
-                    onChange={handleChange}
-                    onKeyUp={handleKeyUp}
+                    // onChange={handleChange}
+                    // onKeyUp={handleKeyUp}
+                    ref={inputRef}
                     name={name}
                     css={css({
                         padding: sizeSet["md"].padding,
@@ -142,28 +150,35 @@ function Combobox({
                         flexDirection: "column",
                         position: "absolute",
                         top: "3rem",
-                        width: "100%",
-                        padding: "0.3rem",
-                        gap: "0.3rem",
+                        minWidth: inputRef.current?.offsetWidth,
                         borderRadius: "0.8rem",
                         border: `0.1rem solid ${colorPalette[colorMode].gray050}`,
                         fontFamily: "'Noto Sans KR', sans-serif",
                         fontSize: "0.9rem",
                         backgroundColor: colorPalette[colorMode].white,
                         boxShadow: "0 7px 20px #93949e20",
+                        maxHeight: "30vh",
+                        overflowY: "scroll",
+                        scrollbarWidth: "none"
                     })}
                 >
-                    <DropdownItem>
-                        <Button
-                            display="flex"
-                            width="100%"
-                            size="sm"
-                            color="text"
-                            justifyContent="flex-start"
-                        >
-                            수정
-                        </Button>
-                    </DropdownItem>
+                    {list.map((value) => (
+                        <div css={css({
+                            padding: "0.3rem",
+                        })}>
+                            <Button
+                                onClick={handleItemClick}
+                                display="flex"
+                                width="100%"
+                                size="sm"
+                                color="text"
+                                justifyContent="flex-start"
+                            >
+                                {value}
+                            </Button>
+                        </div>
+                    ))}
+
                 </div>
 
             </div>
