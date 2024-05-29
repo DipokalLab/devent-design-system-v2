@@ -24,6 +24,7 @@ export * from "./components/Toast";
 export * from "./components/Toggle";
 export * from "./components/Slider";
 export * from "./components/Combobox";
+export * from "./components/Loading";
 
 export * from "./hooks/useToast";
 export * from "./hooks/useColorMode";
