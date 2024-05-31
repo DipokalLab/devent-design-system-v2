@@ -75,7 +75,6 @@
     "storybook": "^8.1.4",
     "style-loader": "^3.3.4",
     "ts-loader": "^9.5.1",
-    "vite": "^5.2.12",
     "vite-plugin-dts": "^3.9.1",
     "web-vitals": "^2.1.4",
     "webpack": "^5.91.0",
