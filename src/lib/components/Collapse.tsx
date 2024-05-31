@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { css, keyframes } from "@emotion/react";
 import { Box } from "./Box";
@@ -57,22 +57,29 @@ function Collapse({ children }: { children?: any }) {
 
 function CollapseItem({ children, title }: { children?: any; title?: any }) {
   const [colorMode, setColorMode] = useColorMode();
-
+  const [itemHeight, setItemHeight] = useState("0px");
   const [isOpen, setIsOpen] = useState(false);
   const [rotateAnimation, setRotateAnimation] = useState(
     `${rotate0} 0.3s forwards`
   );
+  const itemRef = useRef<HTMLDivElement>(null);
 
   const handleClickTitle = () => {
     if (isOpen) {
       setRotateAnimation(`${rotate0} 0.3s forwards`);
+      setItemHeight("0px");
     } else {
       setRotateAnimation(`${rotate180} 0.3s forwards`);
+      setItemHeight(String(itemRef.current?.scrollHeight) + "px");
     }
     setIsOpen(!isOpen);
   };
 
-  const TopElement = styled.div({
+  useEffect(() => {
+    setItemHeight("0px");
+  }, []);
+
+  const TopElement = css({
     display: "flex",
     flexDirection: "column",
     gap: "0.2rem",
@@ -89,26 +96,30 @@ function CollapseItem({ children, title }: { children?: any; title?: any }) {
     cursor: "pointer",
   });
 
-  const ContentElement = styled.div({
-    visibility: isOpen ? "visible" : "hidden",
-    display: isOpen ? "" : "none",
-    position: "relative",
+  const ContentElement = css({
+    //visibility: isOpen ? "visible" : "hidden",
+    //display: isOpen ? "" : "none",
+    //position: "relative",
+    //opacity: 0,
     fontFamily: "'Noto Sans KR', sans-serif",
     fontSize: "1rem",
-    animation: isOpen ? `${fadeIn} 1s forwards` : `${fadeOut} 0.3s forwards`,
+    overflow: "hidden",
+    // animation: isOpen ? `${fadeIn} 1s forwards` : `${fadeOut} 0.3s forwards`,
+    height: `${itemHeight}`,
+    transition: "0.2s ease-out",
   });
 
   return (
-    <TopElement>
+    <div css={TopElement}>
       <TitleElement onClick={handleClickTitle}>
         {title}
         <Arrow isOpen={isOpen} rotateAnimation={rotateAnimation}></Arrow>
       </TitleElement>
 
-      <ContentElement>
+      <div css={ContentElement} ref={itemRef}>
         <Box>{children}</Box>
-      </ContentElement>
-    </TopElement>
+      </div>
+    </div>
   );
 }
 

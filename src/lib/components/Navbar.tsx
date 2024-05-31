@@ -9,9 +9,14 @@ import { colorPalette } from "../styles/colors";
 type NavbarType = {
   isDynamicWidth?: boolean;
   children?: any;
+  isLogo?: boolean;
+  title?: string;
+  size?: "md" | "lg";
 };
 
 function NavbarItem({ children, onClick }: any) {
+  const [colorMode, setColorMode] = useColorMode();
+
   return (
     <button
       onClick={onClick}
@@ -20,8 +25,9 @@ function NavbarItem({ children, onClick }: any) {
         padding: "0.6rem 0.6rem",
         backgroundColor: "transparent",
         fontFamily: "'Noto Sans KR', sans-serif",
-        fontSize: "0.8rem",
-        color: "#2d2d30",
+        fontSize: "0.9rem",
+        color: colorPalette[colorMode].gray950,
+
         cursor: "pointer",
       })}
     >
@@ -31,6 +37,8 @@ function NavbarItem({ children, onClick }: any) {
 }
 
 function NavbarLogo({ children, onClick }: any) {
+  const [colorMode, setColorMode] = useColorMode();
+
   return (
     <button
       onClick={onClick}
@@ -43,6 +51,8 @@ function NavbarLogo({ children, onClick }: any) {
         backgroundColor: "transparent",
         fontFamily: "'Noto Sans KR', sans-serif",
         cursor: "pointer",
+        fontWeight: "700",
+        color: colorPalette[colorMode].gray950,
       })}
     >
       {children}
@@ -50,10 +60,31 @@ function NavbarLogo({ children, onClick }: any) {
   );
 }
 
-function Navbar({ children, isDynamicWidth = true }: NavbarType) {
+function Navbar({
+  children,
+  isDynamicWidth = true,
+  isLogo = false,
+  title = "",
+  size = "md",
+}: NavbarType) {
   const [colorMode, setColorMode] = useColorMode();
 
   const [showBorder, setShowBorder] = useState(false);
+
+  const paddingSize = {
+    md: {
+      padding: "0.4rem 1.125rem 0.25rem 1.125rem",
+      title: {
+        fontSize: "1rem",
+      },
+    },
+    lg: {
+      padding: "0.625rem 1.125rem 0.5rem 1.125rem",
+      title: {
+        fontSize: "1.125rem",
+      },
+    },
+  };
 
   const handleScroll = (e: any) => {
     if (window.scrollY < 20) {
@@ -91,7 +122,7 @@ function Navbar({ children, isDynamicWidth = true }: NavbarType) {
         css={css({
           display: "flex",
           justifyContent: "space-between",
-          padding: "0.4rem 1rem 0.25rem 1rem",
+          padding: paddingSize[size].padding,
           width: "100%",
           "@media(min-width: 1200px)": {
             maxWidth: isDynamicWidth ? "1200px" : "100%",
@@ -103,19 +134,33 @@ function Navbar({ children, isDynamicWidth = true }: NavbarType) {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            fontSize: paddingSize[size].title.fontSize,
+            color: colorPalette[colorMode].gray950,
+            fontFamily: "'Noto Sans KR', sans-serif",
+            cursor: "pointer",
+            fontWeight: "700",
           })}
         >
-          <NavbarLogo>
+          {isLogo ? (
+            <NavbarLogo>
+              <span
+                className="material-symbols-outlined"
+                css={css({
+                  color: colorPalette[colorMode].gray950,
+                })}
+              >
+                home
+              </span>
+            </NavbarLogo>
+          ) : (
             <span
-              className="material-symbols-outlined"
               css={css({
-                fontSize: "1.4rem",
-                color: colorPalette[colorMode].gray950,
+                paddingLeft: "0.5rem",
               })}
             >
-              home
+              {title}
             </span>
-          </NavbarLogo>
+          )}
         </div>
 
         <div>{children}</div>

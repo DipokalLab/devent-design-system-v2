@@ -12,6 +12,7 @@ export function Progress() {
       setPercent((percent) => percent + 10);
     }, 1000);
   }, []);
+
   return (
     <Flex width="300px">
       <Progressbar percent={percent}></Progressbar>

@@ -5,7 +5,32 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import { Button } from "../lib/components/Button";
 import "../lib/index.css";
-import { ThemeProvider } from "../lib";
+import { Flex, Loading, ThemeProvider } from "../lib";
+import { useState } from "react";
+
+export function ClickLoad() {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleClick = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  };
+
+  return (
+    <Flex>
+      <Button
+        color="blue"
+        disabled={isLoading ? true : false}
+        prefixComponent={isLoading ? <Loading></Loading> : <></>}
+        onClick={handleClick}
+      >
+        로그인
+      </Button>
+    </Flex>
+  );
+}
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -41,7 +66,9 @@ export const Primary: Story = {
 
 export function Demo() {
   return (
-    <Button onClick={() => console.log("SD")} color="blue">sf</Button>
+    <Button onClick={() => console.log("SD")} color="blue">
+      sf
+    </Button>
   );
 }
 

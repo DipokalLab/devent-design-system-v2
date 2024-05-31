@@ -36,11 +36,12 @@ function Combobox({
   name?: string;
   color?: "light" | "white";
   size?: "md" | "sm";
-  list?: string[] | number[];
+  list?: (string | number)[];
 }) {
   const [colorMode, setColorMode] = useColorMode();
   const [isClick, setIsClick] = useState(false);
   const [clickValue, setClickValue] = useState("");
+  const [showList, setShowList] = useState<(string | number)[]>([]);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -53,8 +54,23 @@ function Combobox({
     },
   };
 
+  const filterItem = (search: string) => {
+    return list.filter((item: number | string) => {
+      return String(item).indexOf(search.slice(0, search.length - 1)) != -1;
+    });
+  };
+
+  const sendEventOnChange = (value: string) => {
+    onChange({
+      target: {
+        value: value,
+      },
+    });
+  };
+
   const handleItemClick = (e: any) => {
     setClickValue(e.target.innerText);
+    setIsClick(false);
   };
 
   const handleClick = () => {
@@ -65,15 +81,25 @@ function Combobox({
     setIsClick(false);
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    sendEventOnChange(e.target.value);
+    const filtered = filterItem(e.target.value);
+    setShowList([...filtered]);
+  };
+
   useEffect(() => {
     try {
-      onChange({
-        target: {
-          value: clickValue,
-        },
-      });
+      sendEventOnChange(clickValue);
     } catch (error) {}
   }, [clickValue]);
+
+  useEffect(() => {
+    setShowList(() =>
+      list.map((item: number | string) => {
+        return String(item);
+      })
+    );
+  }, []);
 
   return (
     <>
@@ -103,7 +129,7 @@ function Combobox({
           type={type}
           value={value}
           placeholder={placeholder}
-          // onChange={handleChange}
+          onChange={handleChange}
           // onKeyUp={handleKeyUp}
           ref={inputRef}
           name={name}
@@ -142,7 +168,20 @@ function Combobox({
             scrollbarWidth: "none",
           })}
         >
-          {list.map((value) => (
+          {showList.length == 0 && (
+            <p
+              css={css({
+                margin: 0,
+                padding: "0.8rem 0.3rem",
+                color: colorPalette[colorMode].gray200,
+                display: "flex",
+                justifyContent: "center",
+              })}
+            >
+              데이터가 없습니다
+            </p>
+          )}
+          {showList.map((value) => (
             <div
               css={css({
                 padding: "0.3rem",

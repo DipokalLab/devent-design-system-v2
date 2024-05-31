@@ -7,7 +7,7 @@ import { Textarea } from "../lib";
 import { useState } from "react";
 import React from "react";
 
-export function Demo() {
+function Demo() {
   const [value, setValue] = useState("dsv");
   return (
     <Flex width="200px">
@@ -15,7 +15,7 @@ export function Demo() {
         value={value}
         onChange={(e: any) => setValue(e.target.value)}
         rows={3}
-      ></Textarea>
+      />
     </Flex>
   );
 }
