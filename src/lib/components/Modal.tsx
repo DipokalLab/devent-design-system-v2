@@ -80,7 +80,7 @@ function Modal({ children, onClose, isOpen, isScroll = false }: ModalType) {
     setTimeout(() => {
       onClose();
       setOpen(false);
-    }, 300);
+    }, 280);
   };
 
   useEffect(() => {
@@ -95,7 +95,7 @@ function Modal({ children, onClose, isOpen, isScroll = false }: ModalType) {
       setTimeout(() => {
         onClose();
         setOpen(false);
-      }, 300);
+      }, 280);
     }
   }, [isOpen]);
 

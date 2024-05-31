@@ -1,7 +1,34 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { Input, ThemeProvider } from "../lib";
+import { Flex, Input, ThemeProvider } from "../lib";
 import React from "react";
+
+export function Prefix() {
+  return (
+    <Flex justifyContent="center">
+      <Input prefix={<b>USERNAME</b>}></Input>
+    </Flex>
+  );
+}
+
+export function Subfix() {
+  return (
+    <Flex justifyContent="center">
+      <Input subfix={<p style={{ margin: 0 }}>.com</p>}></Input>
+    </Flex>
+  );
+}
+
+export function PrefixSubfix() {
+  return (
+    <Flex justifyContent="center">
+      <Input
+        prefix={<b>https://</b>}
+        subfix={<p style={{ margin: 0 }}>/hhj</p>}
+      ></Input>
+    </Flex>
+  );
+}
 
 const meta = {
   title: "Components/Input",

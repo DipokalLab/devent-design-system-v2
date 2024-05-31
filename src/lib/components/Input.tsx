@@ -18,6 +18,8 @@ type InputType = {
   name?: string;
   color?: "light" | "white";
   size?: "md" | "sm";
+  prefix?: any;
+  subfix?: any;
 };
 
 type TextAreaType = {
@@ -49,6 +51,8 @@ function Input({
   vaildMessage = "",
   color = "white",
   size = "md",
+  prefix = false,
+  subfix = false,
 }: InputType) {
   const [colorMode, setColorMode] = useColorMode();
 
@@ -88,18 +92,35 @@ function Input({
     }
   };
 
-  const FlexBody = styled.div({
+  const FlexBody = css({
     display: "flex",
     flexDirection: "column",
   });
 
-  const Input = styled.input({
+  const InputBody = css({
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  });
+
+  const Input = css({
     padding: sizeSet[size].padding,
-    borderRadius: "0.6rem",
+    borderRadius:
+      prefix && subfix
+        ? "0"
+        : prefix
+          ? "0 0.6rem 0.6rem 0"
+          : subfix
+            ? "0.6rem 0 0 0.6rem"
+            : "0.6rem",
+    borderRight: subfix ? "none !important" : "",
+    borderLeft: prefix ? "none !important" : "",
+
     border: `0.1rem solid ${colorPalette[colorMode].gray050}`,
     backgroundColor: colorSet[color].backgroundColor,
     transition: "0.3s",
     color: colorPalette[colorMode].black,
+    fontSize: "1rem",
 
     outline: outlineSet[String(vaild)].outline,
     ":hover": {
@@ -110,7 +131,7 @@ function Input({
     },
   });
 
-  const BottomLabel = styled.label({
+  const BottomLabel = css({
     color: outlineSet[String(vaild)].color,
     fontSize: "0.7rem",
     paddingTop: "0.4rem",
@@ -118,19 +139,40 @@ function Input({
     textAlign: "end",
   });
 
-  return (
-    <FlexBody>
-      <Input
-        type={type}
-        value={value}
-        placeholder={placeholder}
-        onChange={handleChange}
-        onKeyUp={handleKeyUp}
-        name={name}
-      />
+  const Prefix = css({
+    backgroundColor: colorPalette[colorMode].white,
+    padding: "0.8rem 0 0.8rem 0.8rem",
+    border: `0.1rem solid ${colorPalette[colorMode].gray050}`,
+    borderRadius: "0.6rem 0 0 0.6rem",
+    borderRight: "none",
+  });
 
-      <BottomLabel htmlFor={name}>{vaildMessage}</BottomLabel>
-    </FlexBody>
+  const Subfix = css({
+    backgroundColor: colorPalette[colorMode].white,
+    padding: "0.8rem 0.8rem 0.8rem 0rem",
+    border: `0.1rem solid ${colorPalette[colorMode].gray050}`,
+    borderRadius: "0 0.6rem 0.6rem 0",
+    borderLeft: "none",
+  });
+
+  return (
+    <div css={FlexBody}>
+      <div css={InputBody}>
+        {prefix && <div css={Prefix}>{prefix}</div>}
+        <input
+          css={Input}
+          type={type}
+          value={value}
+          placeholder={placeholder}
+          onChange={handleChange}
+          onKeyUp={handleKeyUp}
+          name={name}
+        />
+        {subfix && <div css={Subfix}>{subfix}</div>}
+      </div>
+
+      <div css={BottomLabel}>{vaildMessage}</div>
+    </div>
   );
 }
 
