@@ -5,6 +5,7 @@ import { fn } from "@storybook/test";
 
 import { Flex, ThemeProvider } from "../lib";
 import { Radio, RadioItem } from "../lib";
+import { Button } from "../../dist";
 
 export function Demo() {
   return (

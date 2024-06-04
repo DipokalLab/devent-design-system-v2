@@ -1,6 +1,11 @@
 /** @jsxImportSource @emotion/react */
 
-import React, { useEffect, useState } from "react";
+import React, {
+  ButtonHTMLAttributes,
+  DetailedHTMLProps,
+  useEffect,
+  useState,
+} from "react";
 
 import { css } from "@emotion/react";
 import { useColorMode } from "../hooks/useColorMode";
@@ -10,16 +15,23 @@ type NavbarType = {
   isDynamicWidth?: boolean;
   children?: any;
   isLogo?: boolean;
-  title?: string;
+  title?: any;
   size?: "md" | "lg";
 };
 
-function NavbarItem({ children, onClick }: any) {
+interface NavbarItemProps
+  extends DetailedHTMLProps<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > {
+  children?: any;
+}
+
+function NavbarItem(props: NavbarItemProps) {
   const [colorMode, setColorMode] = useColorMode();
 
   return (
     <button
-      onClick={onClick}
       css={css({
         border: "none",
         padding: "0.6rem 0.6rem",
@@ -30,8 +42,9 @@ function NavbarItem({ children, onClick }: any) {
 
         cursor: "pointer",
       })}
+      {...props}
     >
-      {children}
+      {props.children}
     </button>
   );
 }
@@ -62,9 +75,8 @@ function NavbarLogo({ children, onClick }: any) {
 
 function Navbar({
   children,
-  isDynamicWidth = true,
-  isLogo = false,
   title = "",
+  isDynamicWidth = true,
   size = "md",
 }: NavbarType) {
   const [colorMode, setColorMode] = useColorMode();
@@ -141,26 +153,7 @@ function Navbar({
             fontWeight: "700",
           })}
         >
-          {isLogo ? (
-            <NavbarLogo>
-              <span
-                className="material-symbols-outlined"
-                css={css({
-                  color: colorPalette[colorMode].gray950,
-                })}
-              >
-                home
-              </span>
-            </NavbarLogo>
-          ) : (
-            <span
-              css={css({
-                paddingLeft: "0.5rem",
-              })}
-            >
-              {title}
-            </span>
-          )}
+          {title}
         </div>
 
         <div>{children}</div>
@@ -169,4 +162,4 @@ function Navbar({
   );
 }
 
-export { Navbar, NavbarItem };
+export { Navbar, NavbarItem, NavbarLogo };
