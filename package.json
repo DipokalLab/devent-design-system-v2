@@ -4,12 +4,12 @@
   "version": "0.1.10",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
-  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "module": "./dist/index.es.js",
       "import": "./dist/index.es.js",
-      "default": "./dist/index.cjs.js"
+      "default": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts"
     }
   },
   "dependencies": {
